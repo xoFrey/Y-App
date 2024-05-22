@@ -28,7 +28,34 @@ const loginUserCtrl = async (req, res) => {
   }
 };
 
+const verifyUserCtrl = async (req, res) => {
+  try {
+    const userInfo = {
+      userId: req.body.userId,
+      sixDigitCode: req.body.sixDigitCode,
+    };
+    const result = await UserService.verifyUser(userInfo);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
+const sendVerificationMailCtrl = async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const result = await UserService.sendVerificationMail(userId);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
 export const UserController = {
   registerUserCtrl,
   loginUserCtrl,
+  verifyUserCtrl,
+  sendVerificationMailCtrl,
 };

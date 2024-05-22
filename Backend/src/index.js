@@ -4,7 +4,9 @@ import cors from "cors";
 import morgan from "morgan";
 import cookieSession from "cookie-session";
 import { userRoute } from "./routes/userRoute.js";
+import { tweetRoute } from "./routes/tweetRoute.js";
 import { connectToDB } from "./models/index.js";
+import { commentRoute } from "./routes/commentRoute.js";
 
 dotenv.config();
 
@@ -16,8 +18,8 @@ app.use(express.json());
 
 // *routes
 app.use("/api/v1/user", userRoute);
-// app.use("/api/v1/tweets", tweetRoute);
-// app.use("/api/v1/comments", commentRoute)
+app.use("/api/v1/tweets", tweetRoute);
+app.use("/api/v1/comments", commentRoute);
 
 // // *cookies
 const twoMonthsinMS = 5256000000;

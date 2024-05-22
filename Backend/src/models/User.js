@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
     tweets: [{ type: mongoose.Types.ObjectId, ref: "Tweets" }],
     follows: [
       {
-        userId: { type: mongoose.Types.ObjectId, ref: "User" },
+        followedUserId: { type: mongoose.Types.ObjectId, ref: "User" },
         userTweet: { type: String, trim: true },
       },
     ],
