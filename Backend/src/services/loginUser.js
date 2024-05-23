@@ -4,8 +4,6 @@ import { hash } from "../utils/passwordSafety.js";
 import { userToView } from "./helpers.js";
 
 export const loginUser = async ({ email, password }) => {
-  console.log(email);
-  console.log(password);
   const user = await User.findOne({ email });
   if (!user) throw new Error("User not found");
 
@@ -13,7 +11,7 @@ export const loginUser = async ({ email, password }) => {
   if (!passwordHash === user.passwordHash) throw new Error("Wrong password");
 
   const accessToken = createToken(user, "access");
-  //   const refreshToken = createToken(user, "refresh");
+  const refreshToken = createToken(user, "refresh");
 
-  return { user: userToView(user), tokens: { accessToken } };
+  return { user: userToView(user), tokens: { accessToken, refreshToken } };
 };

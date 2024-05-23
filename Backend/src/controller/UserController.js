@@ -74,6 +74,17 @@ const unfollowUserCtrl = async (req, res) => {
   }
 };
 
+const refreshTokenCtrl = async (req, res) => {
+  try {
+    const authenticatedUserId = req.authenticatedUserId;
+    const result = await UserService.refreshToken(authenticatedUserId);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
 export const UserController = {
   registerUserCtrl,
   loginUserCtrl,
@@ -81,4 +92,5 @@ export const UserController = {
   sendVerificationMailCtrl,
   followUserCtrl,
   unfollowUserCtrl,
+  refreshTokenCtrl,
 };

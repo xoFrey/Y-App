@@ -5,6 +5,7 @@ import { followUser } from "./followUser.js";
 import { getAllTweets } from "./getAllTweets.js";
 import { getAllUserTweets } from "./getAllUserTweets.js";
 import { loginUser } from "./loginUser.js";
+import { refreshToken } from "./refreshToken.js";
 import { registerUser } from "./registerUser.js";
 import { sendVerificationMail } from "./sendVerificationMail.js";
 import { unfollowUser } from "./unfollowUser.js";
@@ -18,6 +19,7 @@ export const UserService = {
   sendVerificationMail,
   followUser,
   unfollowUser,
+  refreshToken,
 };
 
 export const TweetService = {
