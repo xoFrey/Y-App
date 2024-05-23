@@ -9,6 +9,6 @@ const LoginPage = () => {
       <button onClick={navigate("/register")}>Register</button>
     </main>
   );
-};
+}; //halolooo
 
 export default LoginPage;
