@@ -22,9 +22,16 @@ function App() {
       <UserContext.Provider value={{ user, setUser }}>
         <BrowserRouter>
           <Routes>
-            <Route path="/home" element={<AuthRequired><Home /></AuthRequired>}></Route>
-            <Route path="/startscreen" element={<LoginPage />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route
+              path="/home"
+              element={
+                <AuthRequired>
+                  <Home />
+                </AuthRequired>
+              }
+            ></Route>
+            <Route path="/startscreen" element={<LoginPage />}></Route>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/messages" element={<Messages />}></Route>
             <Route path="/profile" element={<Profile />}></Route>

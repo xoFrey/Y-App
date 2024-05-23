@@ -13,7 +13,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-
   const loginUser = async (e) => {
     e.preventDefault();
     const res = await fetch(`${backendUrl}/api/v1/user/login`, {
