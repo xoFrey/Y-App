@@ -23,23 +23,15 @@ const Login = () => {
       credentials: "include",
     });
 
-    console.log(res);
-
     const data = await res.json();
-
 
     if (!data.result)
       return setErrorMessage(data.message || "Failed verify email");
 
-    // navigate("/dashboard");
-
-
     setToken(data.result.tokens.accessToken);
     setUser(data.result.user);
-    console.log(token);
-
+    navigate("/home");
   };
-
 
   return (
     <main>

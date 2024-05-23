@@ -1,6 +1,6 @@
 import express from "express";
 import { UserController } from "../controller/UserController.js";
-import { doJwtAuth } from "../middlewares/doJwtAuth.js";
+import { doJwtAuth, validateRefreshToken } from "../middlewares/doJwtAuth.js";
 
 export const userRoute = express
   .Router()
@@ -12,5 +12,6 @@ export const userRoute = express
     doJwtAuth,
     UserController.sendVerificationMailCtrl,
   )
+  .post("/refresh-token", validateRefreshToken, UserController.refreshTokenCtrl)
   .patch("/follow/:followingUserId", UserController.followUserCtrl)
   .patch("/unfollow/:unfollowUserId", UserController.unfollowUserCtrl);
