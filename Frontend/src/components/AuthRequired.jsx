@@ -1,10 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { backendUrl } from "../api/api";
-import { TokenContext } from "./context";
+import { TokenContext, UserContext } from "./context";
 
 const AuthRequired = ({ children }) => {
     const { token, setToken } = useContext(TokenContext);
+    const { user, setUser } = useContext(UserContext);
     const [loading, setLoading] = useState(token ? false : true);
     const timeoutRef = useRef(null);
 
@@ -26,6 +27,7 @@ const AuthRequired = ({ children }) => {
             if (data.result) {
                 console.log("was logged in, got new access token");
                 setToken(data.result.newAccessToken);
+                setUser(data.result.user);
                 doSilentRefresh(data.result.newAccessToken);
             } else {
                 console.log("was not logged in (anymore)");
@@ -56,6 +58,7 @@ const AuthRequired = ({ children }) => {
                     const data = await response.json();
                     console.log({ data });
                     setToken(data.result.newAccessToken);
+                    setUser(data.result.user);
                     doSilentRefresh(data.result.newAccessToken);
                 } catch (err) {
                     console.log(err);
