@@ -12,6 +12,7 @@ import { UserContext, TokenContext } from "./components/context";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AuthRequired from "./components/AuthRequired";
+import CreateTweet from "./pages/CreatTweet";
 
 function App() {
   const [user, setUser] = useState({});
@@ -38,6 +39,14 @@ function App() {
             <Route path="/search" element={<Search />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
             <Route path="/tweetDetail" element={<TweetDetail />}></Route>
+            <Route
+              path="/createTweet"
+              element={
+                <AuthRequired>
+                  <CreateTweet />
+                </AuthRequired>
+              }
+            ></Route>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

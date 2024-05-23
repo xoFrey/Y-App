@@ -1,11 +1,12 @@
 import express from "express";
 
 import { TweetController } from "../controller/TweetController.js";
+import { doJwtAuth } from "../middlewares/doJwtAuth.js";
 
 export const tweetRoute = express
   .Router()
   .get("/", TweetController.getAllTweetsCtrl)
   .get("/:userId", TweetController.getAllUserTweetsCtrl)
-  .post("/", TweetController.createTweetCtrl)
+  .post("/", doJwtAuth, TweetController.createTweetCtrl)
   .patch("/:tweetId", TweetController.updateTweetCtrl)
   .delete("/:tweetId", TweetController.deleteTweetCtrl);
