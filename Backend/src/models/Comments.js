@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const commentSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Types.ObjectId, ref: "User" },
+    tweetId: { type: mongoose.Types.ObjectId, ref: "Tweet" },
     commentText: { type: String, required: true, trim: true },
     Date: { type: Date, required: true },
   },

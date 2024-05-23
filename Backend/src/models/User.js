@@ -15,12 +15,7 @@ const userSchema = new mongoose.Schema(
     isVerified: { type: Boolean, default: false },
     sixDigitCode: { type: String, required: true },
     tweets: [{ type: mongoose.Types.ObjectId, ref: "Tweets" }],
-    follows: [
-      {
-        followedUserId: { type: mongoose.Types.ObjectId, ref: "User" },
-        userTweet: { type: String, trim: true },
-      },
-    ],
+    following: [{ type: mongoose.Types.ObjectId, ref: "User" }],
   },
   { collection: "users" },
 );

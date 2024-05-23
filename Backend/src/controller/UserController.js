@@ -53,9 +53,35 @@ const sendVerificationMailCtrl = async (req, res) => {
   }
 };
 
+const followUserCtrl = async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const followingUserId = req.params.followingUserId;
+    const result = await UserService.followUser(userId, followingUserId);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
+const unfollowUserCtrl = async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const unfollowUserId = req.params.unfollowUserId;
+    const result = await UserService.unfollowUser(userId, unfollowUserId);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
 export const UserController = {
   registerUserCtrl,
   loginUserCtrl,
   verifyUserCtrl,
   sendVerificationMailCtrl,
+  followUserCtrl,
+  unfollowUserCtrl,
 };

@@ -11,4 +11,6 @@ export const userRoute = express
     "/sendEmailVerification",
     doJwtAuth,
     UserController.sendVerificationMailCtrl,
-  );
+  )
+  .patch("/follow/:followingUserId", UserController.followUserCtrl)
+  .patch("/unfollow/:unfollowUserId", UserController.unfollowUserCtrl);
