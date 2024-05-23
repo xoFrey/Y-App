@@ -1,28 +1,45 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { TokenContext } from "../components/context";
+import { Link, useNavigate } from "react-router-dom";
+import { TokenContext, UserContext } from "../components/context";
+import { backendUrl } from "../api/api";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [email, setEmail] = useState("xcxizelacar@gmail.com");
+  const [password, setPassword] = useState("hallo");
+  const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext);
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate();
+
+
   const loginUser = async (e) => {
     e.preventDefault();
-    const res = await fetch("${backendUrl}/api/v1/user/login", {
+    const res = await fetch(`${backendUrl}/api/v1/user/login`, {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({ email, password }),
       credentials: "include",
     });
 
+    console.log(res);
+
     const data = await res.json();
-    if (!data.result) setErrorMessage(data.message);
-    console.log(data);
+
+
+    if (!data.result)
+      return setErrorMessage(data.message || "Failed verify email");
+
+    // navigate("/dashboard");
+
+
+    setToken(data.result.tokens.accessToken);
+    setUser(data.result.user);
+    console.log(token);
+
   };
+
 
   return (
     <main>

@@ -13,10 +13,7 @@ const registerUserCtrl = async (req, res) => {
 
 const loginUserCtrl = async (req, res) => {
   try {
-    const userInfo = {
-      email: req.body.email,
-      password: req.body.password,
-    };
+    const userInfo = req.body;
     const result = await UserService.loginUser(userInfo);
     if (result.tokens.refreshToken) {
       req.session.refreshToken = result.tokens.refreshToken;
