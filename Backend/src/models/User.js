@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
     passwordSalt: { type: String, required: true, trim: true },
     isVerified: { type: Boolean, default: false },
     sixDigitCode: { type: String, required: true },
-    tweets: [{ type: mongoose.Types.ObjectId, ref: "Tweets" }],
+    quacks: [{ type: mongoose.Types.ObjectId, ref: "Tweets" }],
     following: [{ type: mongoose.Types.ObjectId, ref: "User" }],
   },
   { collection: "users" },

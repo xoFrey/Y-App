@@ -1,9 +1,9 @@
-import { TweetService, UserService } from "../services/index.js";
+import { QuackService } from "../services/index.js";
 
-const getAllUserTweetsCtrl = async (req, res) => {
+const getAllUserQuacksCtrl = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const result = await TweetService.getAllUserTweets(userId);
+    const result = await QuackService.getAllUserQuacks(userId);
     res.json({ result });
   } catch (error) {
     console.log(error);
@@ -11,9 +11,9 @@ const getAllUserTweetsCtrl = async (req, res) => {
   }
 };
 
-const getAllTweetsCtrl = async (req, res) => {
+const getAllQuacksCtrl = async (req, res) => {
   try {
-    const result = await TweetService.getAllTweets();
+    const result = await QuackService.getAllQuacks();
     res.json({ result });
   } catch (error) {
     console.log(error);
@@ -21,15 +21,15 @@ const getAllTweetsCtrl = async (req, res) => {
   }
 };
 
-const createTweetCtrl = async (req, res) => {
+const createQuackCtrl = async (req, res) => {
   try {
     const userId = req.body.userId;
-    const newTweet = {
+    const newQuack = {
       userId: req.body.userId,
-      tweetText: req.body.tweetText,
+      quackText: req.body.quackText,
       Date: Date.now(),
     };
-    const result = await TweetService.createTweet(userId, newTweet);
+    const result = await QuackService.createQuack(userId, newQuack);
     res.json({ result });
   } catch (error) {
     console.log(error);
@@ -37,11 +37,11 @@ const createTweetCtrl = async (req, res) => {
   }
 };
 
-const updateTweetCtrl = async (req, res) => {
+const updateQuackCtrl = async (req, res) => {
   try {
-    const tweetId = req.params.tweetId;
+    const quackId = req.params.quackId;
     const updateInfo = req.body;
-    const result = await TweetService.updateTweet(tweetId, updateInfo);
+    const result = await QuackService.updateQuack(quackId, updateInfo);
     res.json({ result });
   } catch (error) {
     console.log(error);
@@ -49,10 +49,10 @@ const updateTweetCtrl = async (req, res) => {
   }
 };
 
-const deleteTweetCtrl = async (req, res) => {
+const deleteQuackCtrl = async (req, res) => {
   try {
-    const tweetId = req.params.tweetId;
-    const result = await TweetService.deleteTweet(tweetId);
+    const quackId = req.params.quackId;
+    const result = await QuackService.deleteQuack(quackId);
     res.json({ result });
   } catch (error) {
     console.log(error);
@@ -60,10 +60,10 @@ const deleteTweetCtrl = async (req, res) => {
   }
 };
 
-export const TweetController = {
-  createTweetCtrl,
-  updateTweetCtrl,
-  deleteTweetCtrl,
-  getAllUserTweetsCtrl,
-  getAllTweetsCtrl,
+export const QuackController = {
+  createQuackCtrl,
+  updateQuackCtrl,
+  deleteQuackCtrl,
+  getAllUserQuacksCtrl,
+  getAllQuacksCtrl,
 };

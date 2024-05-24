@@ -2,14 +2,14 @@ import { CommentService } from "../services/index.js";
 
 const createCommentCtrl = async (req, res) => {
   try {
-    const tweetId = req.params.tweetId;
+    const quackId = req.params.quackId;
     const newComment = {
       userId: req.body.userId,
-      tweetId: req.params.tweetId,
+      quackId: req.params.quackId,
       commentText: req.body.commentText,
       Date: Date.now(),
     };
-    const result = await CommentService.createComment(tweetId, newComment);
+    const result = await CommentService.createComment(quackId, newComment);
     res.json({ result });
   } catch (error) {
     console.log(error);

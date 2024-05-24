@@ -7,12 +7,12 @@ import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import Settings from "./pages/Settings";
-import TweetDetail from "./pages/TweetDetail";
+import quackDetail from "./pages/QuackDetail";
 import { UserContext, TokenContext } from "./components/context";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AuthRequired from "./components/AuthRequired";
-import CreateTweet from "./pages/CreateTweet";
+import Createquack from "./pages/CreateQuack";
 
 function App() {
   const [user, setUser] = useState({});
@@ -38,12 +38,12 @@ function App() {
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/search" element={<Search />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
-            <Route path="/tweetDetail" element={<TweetDetail />}></Route>
+            <Route path="/quackDetail" element={<quackDetail />}></Route>
             <Route
-              path="/createTweet"
+              path="/createquack"
               element={
                 <AuthRequired>
-                  <CreateTweet />
+                  <Createquack />
                 </AuthRequired>
               }
             ></Route>

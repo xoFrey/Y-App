@@ -1,17 +1,17 @@
 import { Comments } from "../models/Comments.js";
-import { Tweet } from "../models/Tweet.js";
+import { Quack } from "../models/Quack.js";
 import { User } from "../models/User.js";
 import { userToView } from "./helpers.js";
 
-export const createComment = async (tweetId, newComment) => {
-  const tweet = await Tweet.findById(tweetId);
-  if (!tweet) throw new Error("Tweet not found");
+export const createComment = async (quackId, newComment) => {
+  const quack = await Quack.findById(quackId);
+  if (!quack) throw new Error("Quack not found");
 
   const createdComment = await Comments.create(newComment);
   const commentingUser = await User.findById(newComment.userId);
 
   return {
-    ...tweet.toObject(),
+    ...quack.toObject(),
     user: userToView(commentingUser),
     createdComment,
   };

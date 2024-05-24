@@ -2,28 +2,28 @@ import { useContext, useState } from "react";
 import { TokenContext, UserContext } from "../components/context";
 import { backendUrl } from "../api/api";
 
-const CreateTweet = () => {
+const CreateQuack = () => {
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext);
   const [textInput, setTextInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const createTweet = async (e) => {
+  const createQuack = async (e) => {
     e.preventDefault();
 
-    const tweetInfo = {
+    const quackInfo = {
       userId: user._id,
-      tweetText: textInput,
+      quackText: textInput,
       Date: Date.now(),
     };
 
-    const res = await fetch(`${backendUrl}/api/v1/tweets`, {
+    const res = await fetch(`${backendUrl}/api/v1/quacks`, {
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
       method: "POST",
-      body: JSON.stringify(tweetInfo),
+      body: JSON.stringify(quackInfo),
       credentials: "include",
     });
 
@@ -34,7 +34,7 @@ const CreateTweet = () => {
 
   return (
     <main>
-      <h1>CreateTweet</h1>
+      <h1>CreateQuack</h1>
       <form>
         <textarea
           value={textInput}
@@ -42,10 +42,10 @@ const CreateTweet = () => {
           placeholder="What do you wanna Quack?"
           onChange={(e) => setTextInput(e.target.value)}
         ></textarea>
-        <button onClick={createTweet}>Quack!!!</button>
+        <button onClick={createQuack}>Quack!!!</button>
       </form>
     </main>
   );
 };
 
-export default CreateTweet;
+export default CreateQuack;

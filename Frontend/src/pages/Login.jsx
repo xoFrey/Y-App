@@ -4,7 +4,7 @@ import { TokenContext, UserContext } from "../components/context";
 import { backendUrl } from "../api/api";
 
 const Login = () => {
-  const [email, setEmail] = useState("xcxizelacar@gmail.com");
+  const [email, setEmail] = useState("xizelacar@gmail.com");
   const [password, setPassword] = useState("hallo");
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext);

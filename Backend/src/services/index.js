@@ -1,16 +1,16 @@
 import { createComment } from "./createComment.js";
-import { createTweet } from "./createTweet.js";
-import { deleteTweet } from "./deleteTweet.js";
+import { createQuack } from "./createQuack.js";
+import { deleteQuack } from "./deleteQuack.js";
 import { followUser } from "./followUser.js";
-import { getAllTweets } from "./getAllTweets.js";
+import { getAllQuacks } from "./getAllQuacks.js";
 import { getAllUser } from "./getAllUser.js";
-import { getAllUserTweets } from "./getAllUserTweets.js";
+import { getAllUserQuacks } from "./getAllUserQuacks.js";
 import { loginUser } from "./loginUser.js";
 import { refreshToken } from "./refreshToken.js";
 import { registerUser } from "./registerUser.js";
 import { sendVerificationMail } from "./sendVerificationMail.js";
 import { unfollowUser } from "./unfollowUser.js";
-import { updateTweet } from "./updateTweet.js";
+import { updateQuack } from "./updateQuack.js";
 import { verifyUser } from "./verifyUser.js";
 
 export const UserService = {
@@ -24,12 +24,12 @@ export const UserService = {
   getAllUser,
 };
 
-export const TweetService = {
-  createTweet,
-  updateTweet,
-  deleteTweet,
-  getAllUserTweets,
-  getAllTweets,
+export const QuackService = {
+  createQuack,
+  updateQuack,
+  deleteQuack,
+  getAllUserQuacks,
+  getAllQuacks,
 };
 
 export const CommentService = {

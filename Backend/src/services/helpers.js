@@ -6,7 +6,7 @@ export const userToView = (user) => {
     username: user.username,
     email: user.email,
     bio: user.bio,
-    tweets: user.tweets,
+    quacks: user.quacks,
     following: user.following,
   };
 };

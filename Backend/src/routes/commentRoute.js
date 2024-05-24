@@ -1,10 +1,11 @@
 import express from "express";
 import { CommentController } from "../controller/CommentController.js";
+import { QuackController } from "../controller/QuackController.js";
 
 export const commentRoute = express
   .Router()
-  //   .get("/", TweetController.getAllTweetsCtrl)
-  //   .get("/:userId", TweetController.getAllUserTweetsCtrl)
-  .post("/:tweetId", CommentController.createCommentCtrl);
-//   .patch("/:tweetId", TweetController.updateTweetCtrl)
-//   .delete("/:tweetId", TweetController.deleteTweetCtrl);
+  .get("/", QuackController.getAllQuacksCtrl)
+  .get("/:userId", QuackController.getAllUserQuacksCtrl)
+  .post("/:quackId", CommentController.createCommentCtrl);
+//   .patch("/:quackId", QuackController.updateQuackCtrl)
+//   .delete("/:quackId", QuackController.deleteQuackCtrl);
