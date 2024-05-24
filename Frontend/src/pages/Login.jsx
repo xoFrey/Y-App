@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { TokenContext, UserContext } from "../components/context";
 import { backendUrl } from "../api/api";
+import { FaArrowLeft } from "react-icons/fa";
+import "./css/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("xizelacar@gmail.com");
@@ -33,21 +35,29 @@ const Login = () => {
   };
 
   return (
-    <main>
+    <section className="login">
+      <header>
+        <Link to="/">
+          <FaArrowLeft />
+        </Link>
+        <div>
+          <img src="/img/goose_white.png" alt="" />
+        </div>
+      </header>
       <form>
         <div>
-          <label htmlFor="email">Email</label>
           <input
             type="email"
             value={email}
             id="email"
+            placeholder="E-Mail"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="password">Password</label>
           <input
             type="password"
             value={password}
             id="password"
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
@@ -57,7 +67,7 @@ const Login = () => {
       <p>
         Don't have an account yet? <Link to="/register">Create Account</Link>
       </p>
-    </main>
+    </section>
   );
 };
 
