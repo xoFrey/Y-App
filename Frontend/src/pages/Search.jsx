@@ -1,5 +1,55 @@
+import { CiSettings } from "react-icons/ci";
+import "./css/Search.css";
+import { useContext, useEffect, useState } from "react";
+import { backendUrl } from "../api/api";
+import { TokenContext } from "../components/context";
+
+
 const Search = () => {
-  return <h1>Search</h1>;
+  const { token } = useContext(TokenContext);
+  const [searchInput, setSearchInput] = useState("");
+  const [allUser, setAllUser] = useState();
+
+  useEffect(() => {
+    const showAllUser = async () => {
+      const res = await fetch(`${backendUrl}/api/v1/user`, {
+        headers: { authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      setAllUser(data.result);
+      console.log(allUser);
+      console.log(searchInput);
+      if (searchInput.length > 0) {
+        const filteredUser = allUser.filter((user) => user.username.toLowerCase().includes(searchInput.toLowerCase()));
+        setAllUser(filteredUser);
+      }
+    };
+    showAllUser();
+  }, [searchInput]);
+
+
+
+
+
+  return <section className="search">
+
+    <div>
+      <img src="/img/goose_white.png" alt="" />
+      <input type="text" placeholder="Search" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+      <CiSettings />
+
+    </div> <div className="border">
+    </div>
+    {allUser?.map((user) => (
+      <article>
+        <img src="/img/goose_white.png" alt="" />
+        <div>
+          <h4>{user.firstname}</h4>
+          <p>{user.username}</p>
+        </div>
+      </article>
+    ))}
+  </section>;
 };
 
 export default Search;

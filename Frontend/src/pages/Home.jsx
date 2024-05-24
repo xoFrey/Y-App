@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { TokenContext, UserContext } from "../components/context";
 import { backendUrl } from "../api/api";
 import "./css/Home.css";
+import Header from "../components/Header";
 
 const Home = () => {
   const { user, setUser } = useContext(UserContext);
@@ -30,11 +31,14 @@ const Home = () => {
   console.log(quacks);
 
   return <section className="home">
-    <h1>All Quacks</h1>
+    <Header />
     {quacks?.map((quack) => (
-      <div key={quack._id}>
-        <p>{quack.userId.username}</p>
-        <p>{quack.Date}</p>
+      <div key={quack._id} className="quack">
+        <div>
+          <h4>{quack.userId.firstname} {quack.userId.lastname}</h4>
+          <p>@{quack.userId.username}</p>
+        </div>
+        {/* <p>{quack.Date}</p> */}
         <p>{quack.quackText}</p>
       </div>
 

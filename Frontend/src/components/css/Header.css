@@ -1,0 +1,27 @@
+header {
+position: fixed;
+background-color: white;
+top: 0;
+padding-top: 20px;
+
+}
+header svg {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    fill: #fe854c;
+}
+
+header div {
+    border-bottom: 1px solid rgb(224, 224, 224);
+    width: 100vw;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+header div img {
+    width: 50px;
+    margin-bottom: 10px;
+}

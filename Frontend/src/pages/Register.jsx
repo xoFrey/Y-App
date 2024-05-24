@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { backendUrl } from "../api/api";
+import "./css/Register.css";
+import Header from "../components/Header";
 
 const Register = () => {
   const [firstname, setFirstname] = useState("");
@@ -29,13 +31,8 @@ const Register = () => {
   };
 
   return (
-    <>
-      <header>
-        <Link to="/">
-          <FaArrowLeft />
-        </Link>
-        <img src="../assets/goose.jpg" alt="" />
-      </header>
+    <section className="register">
+      <Header />
       <main>
         <h1>Create your Account</h1>
         <form>
@@ -75,7 +72,7 @@ const Register = () => {
           Already have a Account? <Link to="/login">Login to your Account</Link>
         </p>
       </main>
-    </>
+    </section>
   );
 };
 

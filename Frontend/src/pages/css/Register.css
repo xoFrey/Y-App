@@ -1,0 +1,66 @@
+.register{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px;
+        padding-inline: 10vw;
+}
+
+.register header svg {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    fill: #fe854c;
+}
+
+.register header div {
+    border-bottom: 1px solid rgb(224, 224, 224);
+    width: 100vw;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.register header div img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.register main form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    
+}
+
+.register main form input {
+    border-style: none;
+    height: 40px;
+    font-size: 17px;
+    border-bottom: 2px solid #fe854c;
+    margin-bottom: 20px;
+   
+}
+.register form  input:focus {
+    outline: none;
+}
+
+.register form button {
+    padding: 10px 14px;
+    border-radius: 20px;
+    border-style: none;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.274);
+    background-color: #fe854c;
+    width: 200px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    color: white;
+    font-size: 17px;
+}
+
+.register main p {
+    text-align: center;
+    width: 24ch;
+}

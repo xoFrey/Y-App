@@ -1,0 +1,57 @@
+
+
+.search div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    padding-top: 20px;    
+}
+.border {
+    border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+.search div img {
+    width: 30px;
+}
+
+.search div svg{
+    width: 20px;
+    height: 20px;
+  
+}
+
+.search div input{
+    border-radius: 20px;
+    padding: 5px 10px;
+    width: 50%; border-bottom: 1px solid rgb(224, 224, 224);
+}
+.search article{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-inline: 5vw;
+    gap: 20px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    padding-bottom: 10px;
+
+}
+
+.search article img{
+    width: 50px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 100%;
+    padding: 10px;
+}
+
+.search article div{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+      
+
+}
+
+.search article div p{
+    margin-bottom: 9px;
+}

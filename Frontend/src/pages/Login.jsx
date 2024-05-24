@@ -2,8 +2,9 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { TokenContext, UserContext } from "../components/context";
 import { backendUrl } from "../api/api";
-import { FaArrowLeft } from "react-icons/fa";
+
 import "./css/Login.css";
+import Header from "../components/Header";
 
 const Login = () => {
   const [email, setEmail] = useState("xizelacar@gmail.com");
@@ -36,14 +37,7 @@ const Login = () => {
 
   return (
     <section className="login">
-      <header>
-        <Link to="/">
-          <FaArrowLeft />
-        </Link>
-        <div>
-          <img src="/img/goose_white.png" alt="" />
-        </div>
-      </header>
+      <Header />
       <form>
         <div>
           <input
@@ -63,7 +57,6 @@ const Login = () => {
         </div>
         <button onClick={loginUser}>Login</button>
       </form>
-
       <p>
         Don't have an account yet? <Link to="/register">Create Account</Link>
       </p>
