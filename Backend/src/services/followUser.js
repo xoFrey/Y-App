@@ -21,7 +21,6 @@ export const followUser = async (userId, followingUserId) => {
     user: userToView(updatedUser),
     following: {
       followingUser: userToView(userToFollow),
-      followingTweets: userToFollow.tweets,
     },
   };
 };

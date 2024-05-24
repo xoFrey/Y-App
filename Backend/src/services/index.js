@@ -3,6 +3,7 @@ import { createTweet } from "./createTweet.js";
 import { deleteTweet } from "./deleteTweet.js";
 import { followUser } from "./followUser.js";
 import { getAllTweets } from "./getAllTweets.js";
+import { getAllUser } from "./getAllUser.js";
 import { getAllUserTweets } from "./getAllUserTweets.js";
 import { loginUser } from "./loginUser.js";
 import { refreshToken } from "./refreshToken.js";
@@ -20,6 +21,7 @@ export const UserService = {
   followUser,
   unfollowUser,
   refreshToken,
+  getAllUser,
 };
 
 export const TweetService = {

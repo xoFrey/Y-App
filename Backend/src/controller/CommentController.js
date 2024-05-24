@@ -5,6 +5,7 @@ const createCommentCtrl = async (req, res) => {
     const tweetId = req.params.tweetId;
     const newComment = {
       userId: req.body.userId,
+      tweetId: req.params.tweetId,
       commentText: req.body.commentText,
       Date: Date.now(),
     };

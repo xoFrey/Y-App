@@ -12,7 +12,7 @@ import { UserContext, TokenContext } from "./components/context";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AuthRequired from "./components/AuthRequired";
-import CreateTweet from "./pages/CreatTweet";
+import CreateTweet from "./pages/CreateTweet";
 
 function App() {
   const [user, setUser] = useState({});

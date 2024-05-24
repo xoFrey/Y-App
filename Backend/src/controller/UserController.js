@@ -1,5 +1,15 @@
 import { UserService } from "../services/index.js";
 
+const getAllUserCtrl = async (req, res) => {
+  try {
+    const result = await UserService.getAllUser();
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
 const registerUserCtrl = async (req, res) => {
   try {
     const userInfo = req.body;
@@ -93,4 +103,5 @@ export const UserController = {
   followUserCtrl,
   unfollowUserCtrl,
   refreshTokenCtrl,
+  getAllUserCtrl,
 };

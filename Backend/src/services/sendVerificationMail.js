@@ -11,7 +11,7 @@ export const sendVerificationMail = async (userId) => {
 const sendEmailVerification = (user) => {
   return sendEmail({
     to: user.email,
-    subject: "Welcomne to Todo.io",
+    subject: "Welcomne to Y-App! Just better than X!",
     html: `<h3>Hi ${user.username}</h3>,
 <h4>welcome to Y-App 🎉!!!</h4>
 <p>Please enter the below six-digit-code verify your account to be able to login.

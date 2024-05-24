@@ -4,6 +4,7 @@ import { doJwtAuth, validateRefreshToken } from "../middlewares/doJwtAuth.js";
 
 export const userRoute = express
   .Router()
+  .get("/", UserController.getAllUserCtrl)
   .post("/register", UserController.registerUserCtrl)
   .post("/login", UserController.loginUserCtrl)
   .post("/verifyUser", doJwtAuth, UserController.verifyUserCtrl)
