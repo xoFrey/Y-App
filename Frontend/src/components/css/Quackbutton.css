@@ -1,0 +1,11 @@
+.createquack a svg {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: #fe854c;
+  fill: white;
+  width: 70px;
+  height: 70px;
+  padding: 9px;
+  border-radius: 100px;
+}

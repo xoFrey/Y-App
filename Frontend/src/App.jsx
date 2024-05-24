@@ -27,11 +27,12 @@ function App() {
     }, 3);
   }, []);
 
-
   return (
     <TokenContext.Provider value={{ token, setToken }}>
       <UserContext.Provider value={{ user, setUser }}>
-        {timer ? <LoadingPage /> :
+        {timer ? (
+          <LoadingPage />
+        ) : (
           <BrowserRouter>
             <Routes>
               <Route path="/login" element={<Login />}></Route>
@@ -46,7 +47,14 @@ function App() {
               <Route path="/" element={<LoginPage />}></Route>
               <Route path="/register" element={<Register />}></Route>
               <Route path="/messages" element={<Messages />}></Route>
-              <Route path="/profile" element={<Profile />}></Route>
+              <Route
+                path="/profile"
+                element={
+                  <AuthRequired>
+                    <Profile />
+                  </AuthRequired>
+                }
+              ></Route>
               <Route path="/search" element={<Search />}></Route>
               <Route path="/settings" element={<Settings />}></Route>
               <Route path="/quackDetail" element={<quackDetail />}></Route>
@@ -60,8 +68,8 @@ function App() {
               ></Route>
             </Routes>
             <Navbar />
-          </BrowserRouter>}
-
+          </BrowserRouter>
+        )}
       </UserContext.Provider>
     </TokenContext.Provider>
   );
