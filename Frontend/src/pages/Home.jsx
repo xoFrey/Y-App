@@ -3,6 +3,8 @@ import { TokenContext, UserContext } from "../components/context";
 import { backendUrl } from "../api/api";
 import "./css/Home.css";
 import Header from "../components/Header";
+import QuackButton from "../components/QuackButton";
+import Comments from "../components/Comments";
 
 const Home = () => {
   const { user, setUser } = useContext(UserContext);
@@ -13,14 +15,18 @@ const Home = () => {
   useEffect(() => {
     const fetchAllQuacks = async () => {
       const res = await fetch(`${backendUrl}/api/v1/quacks`, {
-        headers: { authorization: `Bearer ${token}` }
+        headers: { authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       if (!data.result)
         return setErrorMessage(data.message || "Failed to fetch Quacks");
 
-      const followedQuacks = data.result.filter((item) => user.following.includes(item.userId._id));
-      const ownQuacks = data.result.filter((item) => user.quacks.includes(item._id));
+      const followedQuacks = data.result.filter((item) =>
+        user.following.includes(item.userId._id)
+      );
+      const ownQuacks = data.result.filter((item) =>
+        user.quacks.includes(item._id)
+      );
       const feedQuacks = followedQuacks.concat(ownQuacks);
 
       setQuacks(feedQuacks);
@@ -30,21 +36,25 @@ const Home = () => {
 
 
 
-  return <section className="home">
-    <Header />
-    {quacks?.map((quack) => (
-      <div key={quack._id} className="quack">
-        <div>
-          <h4>{quack.userId.firstname} {quack.userId.lastname}</h4>
-          <p>@{quack.userId.username}</p>
+  return (
+    <section className="home">
+      <Header />
+      <QuackButton />
+      {quacks?.map((quack) => (
+        <div key={quack._id} className="quack">
+          <div>
+            <h4>
+              {quack.userId.firstname} {quack.userId.lastname}
+            </h4>
+            <p>@{quack.userId.username}</p>
+          </div>
+          {/* <p>{quack.Date}</p> */}
+          <p>{quack.quackText}</p>
+          <Comments quack={quack} />
         </div>
-        {/* <p>{quack.Date}</p> */}
-        <p>{quack.quackText}</p>
-      </div>
-
-    ))}
-
-  </section>;
+      ))}
+    </section>
+  );
 };
 
 export default Home;

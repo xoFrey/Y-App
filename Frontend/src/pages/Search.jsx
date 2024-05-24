@@ -3,7 +3,7 @@ import "./css/Search.css";
 import { useContext, useEffect, useState } from "react";
 import { backendUrl } from "../api/api";
 import { TokenContext } from "../components/context";
-
+import QuackButton from "../components/QuackButton";
 
 const Search = () => {
   const { token } = useContext(TokenContext);
@@ -13,43 +13,47 @@ const Search = () => {
   useEffect(() => {
     const showAllUser = async () => {
       const res = await fetch(`${backendUrl}/api/v1/user`, {
-        headers: { authorization: `Bearer ${token}` }
+        headers: { authorization: `Bearer ${token}` },
       });
       const data = await res.json();
       setAllUser(data.result);
       console.log(allUser);
       console.log(searchInput);
       if (searchInput.length > 0) {
-        const filteredUser = allUser.filter((user) => user.username.toLowerCase().includes(searchInput.toLowerCase()));
+        const filteredUser = allUser.filter((user) =>
+          user.username.toLowerCase().includes(searchInput.toLowerCase())
+        );
         setAllUser(filteredUser);
       }
     };
     showAllUser();
   }, [searchInput]);
 
-
-
-
-
-  return <section className="search">
-
-    <div>
-      <img src="/img/goose_white.png" alt="" />
-      <input type="text" placeholder="Search" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
-      <CiSettings />
-
-    </div> <div className="border">
-    </div>
-    {allUser?.map((user) => (
-      <article>
+  return (
+    <section className="search">
+      <div>
         <img src="/img/goose_white.png" alt="" />
-        <div>
-          <h4>{user.firstname}</h4>
-          <p>{user.username}</p>
-        </div>
-      </article>
-    ))}
-  </section>;
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <CiSettings />
+      </div>{" "}
+      <div className="border"></div>
+      <QuackButton />
+      {allUser?.map((user) => (
+        <article>
+          <img src="/img/goose_white.png" alt="" />
+          <div>
+            <h4>{user.firstname}</h4>
+            <p>{user.username}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+  );
 };
 
 export default Search;
