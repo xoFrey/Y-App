@@ -6,13 +6,9 @@ import { userToView } from "./helpers.js";
 export const createComment = async (quackId, newComment) => {
   const quack = await Quack.findById(quackId);
   if (!quack) throw new Error("Quack not found");
+  const user = await User.findById(quack.userId);
 
   const createdComment = await Comments.create(newComment);
-  const commentingUser = await User.findById(newComment.userId);
 
-  return {
-    ...quack.toObject(),
-    user: userToView(commentingUser),
-    createdComment,
-  };
+  return { createdComment, user: userToView(user) };
 };

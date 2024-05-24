@@ -1,5 +1,16 @@
 import { QuackService } from "../services/index.js";
 
+const getOneQuackCtrl = async (req, res) => {
+  try {
+    const quackId = req.params.quackId;
+    const result = await QuackService.getOneQuack(quackId);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
 const getAllUserQuacksCtrl = async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -67,4 +78,5 @@ export const QuackController = {
   deleteQuackCtrl,
   getAllUserQuacksCtrl,
   getAllQuacksCtrl,
+  getOneQuackCtrl,
 };

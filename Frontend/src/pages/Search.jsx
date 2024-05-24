@@ -17,8 +17,7 @@ const Search = () => {
       });
       const data = await res.json();
       setAllUser(data.result);
-      console.log(allUser);
-      console.log(searchInput);
+
       if (searchInput.length > 0) {
         const filteredUser = allUser.filter((user) =>
           user.username.toLowerCase().includes(searchInput.toLowerCase())

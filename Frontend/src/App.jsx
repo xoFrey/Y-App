@@ -15,6 +15,7 @@ import AuthRequired from "./components/AuthRequired";
 import Createquack from "./pages/CreateQuack";
 import Navbar from "./components/Navbar";
 import LoadingPage from "./pages/LoadingPage";
+import QuackDetail from "./pages/QuackDetail";
 
 function App() {
   const [user, setUser] = useState({});
@@ -57,7 +58,7 @@ function App() {
               ></Route>
               <Route path="/search" element={<Search />}></Route>
               <Route path="/settings" element={<Settings />}></Route>
-              <Route path="/quackDetail" element={<quackDetail />}></Route>
+              <Route path="/quackdetail/:quackId" element={<QuackDetail />}></Route>
               <Route
                 path="/createquack"
                 element={

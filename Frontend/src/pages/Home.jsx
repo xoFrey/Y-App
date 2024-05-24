@@ -5,6 +5,7 @@ import "./css/Home.css";
 import Header from "../components/Header";
 import QuackButton from "../components/QuackButton";
 import Comments from "../components/Comments";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user, setUser } = useContext(UserContext);
@@ -50,7 +51,9 @@ const Home = () => {
           </div>
           {/* <p>{quack.Date}</p> */}
           <p>{quack.quackText}</p>
-          <Comments quack={quack} />
+          <Link to={`/quackdetail/${quack._id}`}>
+            <Comments />
+          </Link>
         </div>
       ))}
     </section>

@@ -1,3 +1,11 @@
 .createComment svg {
   fill: #fe854c;
 }
+
+.commentsection  div{
+  border-bottom: 1px solid black;
+}
+
+.commentsection div p {
+  font-size: 14px;
+}

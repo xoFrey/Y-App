@@ -1,5 +1,16 @@
 import { CommentService } from "../services/index.js";
 
+const getAllCommentsCtrl = async (req, res) => {
+  try {
+    const quackId = req.params.quackId;
+    const result = await CommentService.getAllComments(quackId);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
 const createCommentCtrl = async (req, res) => {
   try {
     const quackId = req.params.quackId;
@@ -17,4 +28,4 @@ const createCommentCtrl = async (req, res) => {
   }
 };
 
-export const CommentController = { createCommentCtrl };
+export const CommentController = { createCommentCtrl, getAllCommentsCtrl };

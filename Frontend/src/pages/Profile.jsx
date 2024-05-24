@@ -14,7 +14,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchOwnQuacks = async () => {
-      const res = await fetch(`${backendUrl}/api/v1/quacks/${user._id}`, {
+      const res = await fetch(`${backendUrl}/api/v1/quacks/user/${user._id}`, {
         headers: { authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -65,7 +65,9 @@ const Profile = () => {
                 <p>@{quack.userId.username}</p>
               </div>
               <p>{quack.quackText}</p>
-              <Comments quack={quack} />
+              <Link to={`/quackdetail/${quack._id}`}>
+                <Comments quack={quack} />
+              </Link>
             </div>
           ))}
         </section>
