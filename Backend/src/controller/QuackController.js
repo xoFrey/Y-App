@@ -24,10 +24,11 @@ const getAllQuacksCtrl = async (req, res) => {
 const createQuackCtrl = async (req, res) => {
   try {
     const userId = req.body.userId;
+    const date = new Date(Date.now());
     const newQuack = {
       userId: req.body.userId,
       quackText: req.body.quackText,
-      Date: Date.now(),
+      Date: date.toLocaleString(),
     };
     const result = await QuackService.createQuack(userId, newQuack);
     res.json({ result });

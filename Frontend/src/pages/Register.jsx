@@ -31,9 +31,9 @@ const Register = () => {
   return (
     <>
       <header>
-        <a href="">
+        <Link to="/">
           <FaArrowLeft />
-        </a>
+        </Link>
         <img src="../assets/goose.jpg" alt="" />
       </header>
       <main>

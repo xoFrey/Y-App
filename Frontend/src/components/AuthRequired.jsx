@@ -9,7 +9,7 @@ const AuthRequired = ({ children }) => {
     const [loading, setLoading] = useState(token ? false : true);
     const timeoutRef = useRef(null);
 
-    console.log({ token, loading });
+    // console.log({ token, loading });
 
     const navigate = useNavigate();
 
@@ -24,6 +24,7 @@ const AuthRequired = ({ children }) => {
             });
 
             const data = await response.json();
+            console.log("checked refresh", { data });
             if (data.result) {
                 console.log("was logged in, got new access token");
                 setToken(data.result.newAccessToken);
@@ -53,10 +54,9 @@ const AuthRequired = ({ children }) => {
                         }
                     );
 
-                    if (!data.result) navigate("/login");
-
                     const data = await response.json();
-                    console.log({ data });
+                    if (!data.result) navigate("/login");
+                    console.log("silent refresh", { data });
                     setToken(data.result.newAccessToken);
                     setUser(data.result.user);
                     doSilentRefresh(data.result.newAccessToken);

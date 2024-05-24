@@ -1,7 +1,8 @@
 import { User } from "../models/User.js";
+import { userToView } from "./helpers.js";
 
 export const getAllUser = async () => {
-  const user = await User.find({});
-  console.log(user);
+  const allUser = await User.find({});
+  const user = allUser.map((singleUser) => userToView(singleUser));
   return user;
 };

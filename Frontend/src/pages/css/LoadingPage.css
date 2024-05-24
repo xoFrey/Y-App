@@ -1,0 +1,28 @@
+.loadingpage{
+    background-color: rgb(124, 124, 253);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goose{
+    width: 100px;
+   animation: move 1s linear infinite;
+}
+
+@keyframes move {
+
+        0% {
+            transform: rotate(10deg);
+        }
+
+        50% {
+            transform: rotate(-10deg);
+        }
+
+        100% {
+            transform: rotate(10deg);
+        }
+    
+}

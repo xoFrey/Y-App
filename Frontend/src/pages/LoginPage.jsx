@@ -1,14 +1,24 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./css/LoginPage.css";
+
 
 const LoginPage = () => {
-  const navigate = useNavigate();
+
   return (
-    <main>
-      <h1>Login/Register</h1>
-      <button onClick={navigate("/login")}>Login</button>
-      <button onClick={navigate("/register")}>Register</button>
-    </main>
-  );
+    <section className="loginpage">
+      <header>
+        <div>
+          <img src="/img/goose_white.png" alt="" />
+        </div>
+      </header>
+      <main className="loginpage-main">
+        <h1>Quack los in die Welt!</h1>
+        <Link to="/login"><button >Login</button>
+        </Link>
+        <Link to="/register"><button >Register</button>
+        </Link>
+      </main>
+    </section>);
 };
 
 export default LoginPage;

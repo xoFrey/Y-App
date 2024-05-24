@@ -1,0 +1,21 @@
+nav {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin-bottom:  12px; 
+    border-top: 1px solid rgb(224, 224, 224);
+}
+
+nav a svg{
+    fill: black;
+}
+
+nav a svg{
+    margin-top: 12px;
+    height: 25px;
+    width: 25px;
+  
+}

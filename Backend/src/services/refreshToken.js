@@ -7,5 +7,5 @@ export const refreshToken = async (authenticatedUserId) => {
   if (!user) throw new Error("User not found");
 
   const newAccessToken = createToken(user, "access");
-  return { user: userToView(user), newAccessToken };
+  return { user: userToView(user), newAccessToken: newAccessToken };
 };

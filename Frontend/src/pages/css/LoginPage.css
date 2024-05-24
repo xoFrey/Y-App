@@ -1,0 +1,48 @@
+.loginpage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    padding-inline: 10vw;
+  
+}
+
+.loginpage div {
+    border-bottom: 1px solid rgb(224, 224, 224);
+    width: 100vw;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.loginpage div img{
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.loginpage-main {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     
+}
+
+.loginpage-main h1{
+    margin-bottom: 40px;
+    font-size: 45px;
+    text-align: center;
+}
+
+.loginpage-main a button{
+    padding: 10px 14px;
+    border-radius: 20px;
+    border-style: none;
+    box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.274);
+    background-color: #fe854c;
+    width: 200px;
+    margin-bottom: 20px;
+    color: white; 
+    font-size: 17px;
+}
