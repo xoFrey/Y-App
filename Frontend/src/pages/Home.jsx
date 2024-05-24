@@ -22,13 +22,13 @@ const Home = () => {
       const followedQuacks = data.result.filter((item) => user.following.includes(item.userId._id));
       const ownQuacks = data.result.filter((item) => user.quacks.includes(item._id));
       const feedQuacks = followedQuacks.concat(ownQuacks);
-      console.log(followedQuacks);
+
       setQuacks(feedQuacks);
     };
     fetchAllQuacks();
   }, []);
 
-  console.log(quacks);
+
 
   return <section className="home">
     <Header />

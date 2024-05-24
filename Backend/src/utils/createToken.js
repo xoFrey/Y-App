@@ -12,7 +12,7 @@ export const createToken = (user, type = "access") => {
     iat: Math.ceil(Date.now() / 1000),
   };
 
-  const expiresIn = { access: "1h", refresh: "2M" }[type];
+  const expiresIn = { access: "10min", refresh: "2w" }[type];
   const token = jwt.sign(tokenPayload, jwtSecret, { expiresIn });
 
   return token;

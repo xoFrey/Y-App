@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 const app = express();
 
 // // *cookies
-const twoMonthsinMS = 5256000000;
+const twoWeeksInMs = 14 * 24 * 60 * 60 * 1000;
 const isFrontendLocalhost =
   process.env.FRONTEND_URL.startsWith("http://localhost");
 const cookieSessionSecret = process.env.COOKIE_SESSION_SECRET;
@@ -25,7 +25,7 @@ const cookieSessionOptions = {
   name: "session",
   secret: cookieSessionSecret,
   httpOnly: true,
-  expires: new Date(Date.now() + twoMonthsinMS),
+  expires: new Date(Date.now() + twoWeeksInMs),
   sameSite: isFrontendLocalhost ? "lax" : "none",
   secure: isFrontendLocalhost ? false : true,
 };
