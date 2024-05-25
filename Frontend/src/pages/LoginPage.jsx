@@ -17,6 +17,8 @@ const LoginPage = () => {
         </Link>
         <Link to="/register"><button >Register</button>
         </Link>
+
+        <p>By signing up, you agree to our <span>Terms</span>, <span>Privacy Policy</span> and <span>Cookie Use</span></p>
       </main>
     </section>);
 };

@@ -1,59 +1,99 @@
-.head {
-  padding: 10px 5px;
-}
-.head svg {
-  width: 25px;
-  height: 25px;
-  fill: #fe854c;
-}
-.buttoncontainer {
+.header {
+  background-color: black;
+  height: 100px;
+  width: 100vw;
   display: flex;
-  width: 90vw;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
-button {
-  padding: 10px 14px;
-  border-radius: 20px;
-  border-style: none;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.274);
-  background-color: #fe854c;
-  width: 100px;
-  margin-bottom: 20px;
+
+.header h3{
   color: white;
-  font-size: 12px;
 }
 
-.imageContainer {
-  border: 1px solid rgb(224, 224, 224);
-  border-radius: 100%;
-  display: inline;
-  background-color: lightblue;
+.header svg{
+  cursor: pointer;
+    position: fixed;
+      top: 20px;
+      left: 10px;
+      width: 25px;
+      height: 25px;
+      fill: #fe854c;
 }
-main {
-  margin-left: 20px;
+
+.profile main{
+  padding-inline: 20px;
 }
-.profileInfo img {
-  width: 80px;
+
+.pic-button{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: -10px;
+  margin-bottom: 20px;
+ 
 }
-.profileInfo h2 {
-  margin-top: 10px;
+
+.profile main div img {
+  width: 80%;
+    margin: 7px 6px;
 }
-.profileInfo h3 {
-  font-weight: 100;
-  margin-bottom: 10px;
+
+.img-container {
+  background-color: white;
+outline: 4px solid white
+}
+
+.profile main button {
+      cursor: pointer;
+        padding: 5px 10px ;
+        border-radius: 20px;
+        border-style: none;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.137);
+        background-color: #fe854c;
+        color: white;
+        font-size: 14px;
+}
+
+.profile-info{
+ 
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+.profile-info h4 {
+  font-weight: lighter;
   color: grey;
-}
-.profileInfo p {
-  font-size: 15px;
-  margin-bottom: 5px;
-}
-
-.following p span {
-  font-weight: bold;
-}
-.following {
   margin-bottom: 10px;
 }
-.border {
-  border-bottom: 1px solid grey;
+
+.profile-info p{
+  margin-bottom: 10px;
+  font-size: 20px;
 }
+
+.follow{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.follow p{
+  color: grey;
+  font-size: 15px;
+}
+
+.likes-quacks {
+  display: flex;
+  gap: 30px;
+}
+
+.likes-quacks h3{
+    cursor: pointer;
+  font-weight:400;
+}
+
+.active-button{
+
+border-bottom: 2px solid #fe854c;
+}
+

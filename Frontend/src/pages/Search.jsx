@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { backendUrl } from "../api/api";
 import { TokenContext } from "../components/context";
 import QuackButton from "../components/QuackButton";
+import { Link } from "react-router-dom";
 
 const Search = () => {
   const { token } = useContext(TokenContext);
@@ -30,7 +31,7 @@ const Search = () => {
 
   return (
     <section className="search">
-      <div>
+      <div className="search-form">
         <img src="/img/goose_white.png" alt="" />
         <input
           type="text"
@@ -43,13 +44,15 @@ const Search = () => {
       <div className="border"></div>
       <QuackButton />
       {allUser?.map((user) => (
-        <article>
-          <img src="/img/goose_white.png" alt="" />
-          <div>
-            <h4>{user.firstname}</h4>
-            <p>{user.username}</p>
-          </div>
-        </article>
+        <Link to={`/profile/${user._id}`}>
+          <article>
+            <img src="/img/goose_white.png" alt="" />
+            <div>
+              <h4>{user.firstname}</h4>
+              <p>{user.username}</p>
+            </div>
+          </article>
+        </Link>
       ))}
     </section>
   );

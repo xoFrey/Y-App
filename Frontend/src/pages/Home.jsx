@@ -4,8 +4,11 @@ import { backendUrl } from "../api/api";
 import "./css/Home.css";
 import Header from "../components/Header";
 import QuackButton from "../components/QuackButton";
-import Comments from "../components/Comments";
-import { Link } from "react-router-dom";
+
+import Quacks from "../components/Quacks";
+
+
+
 
 const Home = () => {
   const { user, setUser } = useContext(UserContext);
@@ -43,21 +46,10 @@ const Home = () => {
   return (
     <section className="home">
       <Header />
+
       <QuackButton />
       {quacks?.map((quack) => (
-        <div key={quack._id} className="quack">
-          <div>
-            <h4>
-              {quack.userId.firstname} {quack.userId.lastname}
-            </h4>
-            <p>@{quack.userId.username}</p>
-          </div>
-          {/* <p>{quack.Date}</p> */}
-          <p>{quack.quackText}</p>
-          <Link to={`/quackdetail/${quack._id}`}>
-            <Comments />
-          </Link>
-        </div>
+        <Quacks quack={quack} />
       ))}
     </section>
   );

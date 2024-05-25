@@ -5,7 +5,7 @@ nav {
     display: flex;
     justify-content: space-around;
     padding: 10px;
-    padding-bottom:  12px; 
+    padding-bottom:  30px; 
     border-top: 1px solid rgb(224, 224, 224);
     background-color: white;
 }
@@ -19,4 +19,8 @@ nav a svg{
     height: 25px;
     width: 25px;
   
+}
+
+.active svg{
+    fill: #fe854c;
 }

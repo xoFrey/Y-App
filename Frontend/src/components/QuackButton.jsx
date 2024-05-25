@@ -1,17 +1,24 @@
 import { GiFeather } from "react-icons/gi";
 import "./css/Quackbutton.css";
 import { Link } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
+
 
 const QuackButton = () => {
 
 
 
   return (
-    <div className="createquack">
-      <Link to="/createquack">
-        <GiFeather />
-      </Link>
-    </div>
+    <Link to="/createquack">
+      <div className="createquack">
+        <div className="plussign">
+          <FaPlus />
+        </div>
+        <div className="feather">
+          <GiFeather />
+        </div>
+      </div>
+    </Link>
   );
 };
 

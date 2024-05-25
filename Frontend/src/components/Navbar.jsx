@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BiSolidHomeCircle } from "react-icons/bi";
 import { CiSearch } from "react-icons/ci";
 import { GoBell } from "react-icons/go";
@@ -11,10 +11,10 @@ import "./css/Navbar.css";
 
 const Navbar = () => {
     return <nav>
-        <Link to="/home"><BiSolidHomeCircle /></Link>
-        <Link to="/search"><CiSearch /></Link>
-        <Link to="/createquack"><GoBell /></Link>
-        <Link to="/messages"><FaRegEnvelope /></Link>
+        <NavLink to="/home"><BiSolidHomeCircle /></NavLink>
+        <NavLink to="/search"><CiSearch /></NavLink>
+        <NavLink to="/createquack"><GoBell /></NavLink>
+        <NavLink to="/messages"><FaRegEnvelope /></NavLink>
     </nav>;
 };
 

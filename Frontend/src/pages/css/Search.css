@@ -1,30 +1,38 @@
 
 
-.search div {
+.search-form {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     width: 100vw;
     padding-top: 20px;    
+    margin-bottom: 10px;
 }
+
 .border {
     border-bottom: 1px solid rgb(224, 224, 224);
 }
 
-.search div img {
+.search-form img {
     width: 30px;
 }
 
-.search div svg{
-    width: 20px;
-    height: 20px;
+.search-form svg{
+    width: 30px;
+    height: 30px;
   
 }
 
-.search div input{
+.search-form input{
     border-radius: 20px;
     padding: 5px 10px;
     width: 50%; border-bottom: 1px solid rgb(224, 224, 224);
+    border-style: none;
+    border: 1px solid rgb(172, 172, 172);
+}
+
+.search-form input:focus{
+    outline: none;
 }
 .search article{
     display: flex;

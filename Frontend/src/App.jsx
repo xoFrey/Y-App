@@ -51,7 +51,7 @@ function App() {
                 <Route path="/register" element={<Register />}></Route>
                 <Route path="/messages" element={<Messages />}></Route>
                 <Route
-                  path="/profile"
+                  path="/profile/:profileId"
                   element={
                     <AuthRequired>
                       <Profile />

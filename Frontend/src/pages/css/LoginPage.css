@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 60px;
+    margin-top: 200px;
     padding-inline: 10vw;
   
 }
@@ -36,6 +36,7 @@
 }
 
 .loginpage-main a button{
+    cursor: pointer;
     padding: 10px 14px;
     border-radius: 20px;
     border-style: none;
@@ -45,4 +46,13 @@
     margin-bottom: 20px;
     color: white; 
     font-size: 17px;
+}
+
+.loginpage-main p{
+        margin-top: 50px;
+}
+
+.loginpage-main span {
+    cursor: pointer;
+    color: #fe854c;
 }
