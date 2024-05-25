@@ -48,6 +48,11 @@
     cursor: pointer;
 }
 
+.detail-head svg {
+    width: 35px;
+    height: 35px;
+}
+
 .pic-name{
     display: flex;
     align-items: center;
