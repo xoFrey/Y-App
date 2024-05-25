@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { TokenContext, UserContext, RefreshContext } from "../components/context";
 import { backendUrl } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import "./css/CreateQuack.css";
 
 const CreateQuack = () => {
   const { user, setUser } = useContext(UserContext);
@@ -42,16 +43,22 @@ const CreateQuack = () => {
 
 
   return (
-    <main>
-      <h1>CreateQuack</h1>
-      <form>
-        <textarea
-          value={textInput}
-          id=""
-          placeholder="What do you wanna Quack?"
-          onChange={(e) => setTextInput(e.target.value)}
-        ></textarea>
-        <button onClick={createQuack}>Quack!!!</button>
+    <main className="quackpage">
+      <div className="quack-head">
+        <button className="cancel">Cancel</button>
+        <button className="quack-btn" onClick={createQuack}>Quack!</button>
+      </div>
+      <form className="quack-form">
+        <div>
+          <div className="container img-container">
+            <img src="/img/goose_white.png" alt="" />
+          </div>
+          <textarea
+            value={textInput}
+            placeholder="What do you wanna Quack?"
+            onChange={(e) => setTextInput(e.target.value)}
+          ></textarea>
+        </div>
       </form>
     </main>
   );

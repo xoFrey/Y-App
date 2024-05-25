@@ -1,0 +1,65 @@
+.quackpage{
+    padding-inline: 5vw;
+}
+
+.quack-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0 30px 0;
+}
+
+.cancel{
+    background-color: white;
+    border-style: none;
+    color: #fe854c;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.quack-btn{
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 8px 15px;
+    border-style: none;
+    background-color: #fe854c;
+    color: white;
+    font-size: 15px;
+  
+}
+
+.quack-form{
+   
+}
+
+.quack-form div{
+    display: flex;
+    align-items: start;
+    gap: 20px; 
+   
+}
+
+.quack-form img{
+    width: 70%;
+        margin: 6px 5px;
+}
+
+.quack-form button {
+    margin-top: 20px;
+}
+
+textarea{
+    width: 80%;
+    margin-left: 2px;
+    height: 60vh;
+    border-style: none;
+    padding-top: 8px;
+    font-size: 17px;
+}
+
+textarea:focus{
+    outline: none;
+}
+
+

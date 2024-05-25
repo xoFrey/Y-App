@@ -32,7 +32,9 @@ const Search = () => {
   return (
     <section className="search">
       <div className="search-form">
-        <img src="/img/goose_white.png" alt="" />
+        <div className="img-container container">
+          <img src="/img/goose_white.png" alt="" />
+        </div>
         <input
           type="text"
           placeholder="Search"
@@ -40,16 +42,17 @@ const Search = () => {
           onChange={(e) => setSearchInput(e.target.value)}
         />
         <CiSettings />
-      </div>{" "}
-      <div className="border"></div>
+      </div>
       <QuackButton />
       {allUser?.map((user) => (
         <Link to={`/profile/${user._id}`}>
-          <article>
-            <img src="/img/goose_white.png" alt="" />
-            <div>
+          <article className="search-profile">
+            <div className="img-container ">
+              <img src="/img/goose_white.png" alt="" />
+            </div>
+            <div className="search-name">
               <h4>{user.firstname}</h4>
-              <p>{user.username}</p>
+              <p>@{user.username}</p>
             </div>
           </article>
         </Link>
