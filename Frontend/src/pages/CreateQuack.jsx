@@ -1,12 +1,16 @@
-import { useContext, useState } from "react";
-import { TokenContext, UserContext } from "../components/context";
+import { useContext, useEffect, useState } from "react";
+import { TokenContext, UserContext, RefreshContext } from "../components/context";
 import { backendUrl } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 const CreateQuack = () => {
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext);
+  const { refresh, setRefresh } = useContext(RefreshContext);
   const [textInput, setTextInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const createQuack = async (e) => {
     e.preventDefault();
@@ -30,7 +34,12 @@ const CreateQuack = () => {
     const data = await res.json();
     if (!data.result) return setErrorMessage(data.message);
     setTextInput("");
+    setRefresh(!refresh);
+    navigate("/home");
   };
+
+
+
 
   return (
     <main>

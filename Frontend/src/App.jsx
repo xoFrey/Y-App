@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import Settings from "./pages/Settings";
 import quackDetail from "./pages/QuackDetail";
-import { UserContext, TokenContext } from "./components/context";
+import { UserContext, TokenContext, RefreshContext } from "./components/context";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AuthRequired from "./components/AuthRequired";
@@ -21,6 +21,7 @@ function App() {
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
   const [timer, setTimer] = useState(true);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,50 +30,56 @@ function App() {
   }, []);
 
   return (
-    <TokenContext.Provider value={{ token, setToken }}>
-      <UserContext.Provider value={{ user, setUser }}>
-        {timer ? (
-          <LoadingPage />
-        ) : (
-          <BrowserRouter>
-            <Routes>
-              <Route path="/login" element={<Login />}></Route>
-              <Route
-                path="/home"
-                element={
+    <RefreshContext.Provider value={{ refresh, setRefresh }}>
+      <TokenContext.Provider value={{ token, setToken }}>
+        <UserContext.Provider value={{ user, setUser }}>
+          {timer ? (
+            <LoadingPage />
+          ) : (
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<Login />}></Route>
+                <Route
+                  path="/home"
+                  element={
+                    <AuthRequired>
+                      <Home />
+                    </AuthRequired>
+                  }
+                ></Route>
+                <Route path="/" element={<LoginPage />}></Route>
+                <Route path="/register" element={<Register />}></Route>
+                <Route path="/messages" element={<Messages />}></Route>
+                <Route
+                  path="/profile"
+                  element={
+                    <AuthRequired>
+                      <Profile />
+                    </AuthRequired>
+                  }
+                ></Route>
+                <Route path="/search" element={<Search />}></Route>
+                <Route path="/settings" element={<AuthRequired><Settings /></AuthRequired>}></Route>
+                <Route path="/quackdetail/:quackId" element={
                   <AuthRequired>
-                    <Home />
+                    <QuackDetail />
                   </AuthRequired>
-                }
-              ></Route>
-              <Route path="/" element={<LoginPage />}></Route>
-              <Route path="/register" element={<Register />}></Route>
-              <Route path="/messages" element={<Messages />}></Route>
-              <Route
-                path="/profile"
-                element={
-                  <AuthRequired>
-                    <Profile />
-                  </AuthRequired>
-                }
-              ></Route>
-              <Route path="/search" element={<Search />}></Route>
-              <Route path="/settings" element={<Settings />}></Route>
-              <Route path="/quackdetail/:quackId" element={<QuackDetail />}></Route>
-              <Route
-                path="/createquack"
-                element={
-                  <AuthRequired>
-                    <Createquack />
-                  </AuthRequired>
-                }
-              ></Route>
-            </Routes>
-            <Navbar />
-          </BrowserRouter>
-        )}
-      </UserContext.Provider>
-    </TokenContext.Provider>
+                }></Route>
+                <Route
+                  path="/createquack"
+                  element={
+                    <AuthRequired>
+                      <Createquack />
+                    </AuthRequired>
+                  }
+                ></Route>
+              </Routes>
+              <Navbar />
+            </BrowserRouter>
+          )}
+        </UserContext.Provider>
+      </TokenContext.Provider>
+    </RefreshContext.Provider>
   );
 }
 

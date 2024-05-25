@@ -17,6 +17,8 @@ const QuackDetail = () => {
 
   const { quackId } = useParams();
 
+  console.log(user);
+
   useEffect(() => {
     const getDetailsQuack = async (quackId) => {
       const res = await fetch(`${backendUrl}/api/v1/quacks/${quackId}`, {
@@ -44,16 +46,18 @@ const QuackDetail = () => {
       setComment(data.result);
     };
     getAllComments(quackId);
-  }, []);
+  }, [showInput]);
 
-  console.log(comment);
 
-  const createComment = async (quackId) => {
 
+  const createComment = async (e) => {
+    e.preventDefault();
     const commentInfo = {
       userId: user._id,
       commentText: commentText
     };
+
+    console.log(user._id);
     const res = await fetch(`${backendUrl}/api/v1/comments/${quackId}`, {
       headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
       method: "POST",
@@ -63,6 +67,10 @@ const QuackDetail = () => {
     });
     const data = await res.json();
     if (!data.result) return setErrorMessage(data.message);
+
+    setCommentText("");
+    setShowInput(false);
+
   };
 
   return <section className="quackDetail">
@@ -86,15 +94,15 @@ const QuackDetail = () => {
     </div>
 
     <div className={showInput ? ` ` : `dontShow`}>
-      <form onSubmit={() => createComment(quackId)}>
+      <form >
         <input type="text" name="" id="" value={commentText} onChange={(e) => setCommentText(e.target.value)} />
-        <button >Submit</button>
+        <button onClick={createComment}>Submit</button>
       </form>
     </div>
     <article className="commentsection">
       {comment?.map((item) => (
-        <div>
-          {/* <h4>{item.userId.username} says:</h4> */}
+        <div key={item._id}>
+          <h4>{item.userId?.username} says:</h4>
           <p>{item.commentText}</p>
         </div>
       ))}
