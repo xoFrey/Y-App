@@ -35,7 +35,7 @@
     text-align: center;
 }
 
-.loginpage-main a button{
+.loginpage-main a button, .button{
     cursor: pointer;
     padding: 10px 14px;
     border-radius: 20px;

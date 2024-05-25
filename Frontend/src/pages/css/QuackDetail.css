@@ -21,18 +21,22 @@
     gap: 20px;
 }
 
-.quackDetail h3 {
+.userInfo h4{
+    color: grey;
+    font-weight: lighter;
+}
+
+.quackDetail h6{
     padding-left: 20px;
     font-size: 30px;
     margin-bottom: 20px;
     font-weight: lighter;
 }
-.quackDetail p {
+.date {
     padding-left: 20px;
     font-size: 15px;
     color: grey;
 }
-
 
 
 .detailicon {
@@ -51,6 +55,7 @@
 .detail-head svg {
     width: 35px;
     height: 35px;
+    cursor: pointer;
 }
 
 .pic-name{

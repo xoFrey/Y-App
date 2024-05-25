@@ -7,6 +7,7 @@ export const userRoute = express
   .get("/", UserController.getAllUserCtrl)
   .post("/register", UserController.registerUserCtrl)
   .post("/login", UserController.loginUserCtrl)
+  .post("/logout", UserController.logoutUserCtrl)
   .post("/verifyUser", doJwtAuth, UserController.verifyUserCtrl)
   .post(
     "/sendEmailVerification",

@@ -7,19 +7,21 @@ import { AiOutlineRetweet } from "react-icons/ai";
 import "./css/QuackDetail.css";
 import Comments from "../components/Comments";
 import { CiSettings } from "react-icons/ci";
+import Sidebar from "../components/Sidebar";
 
 const QuackDetail = () => {
-  const { token } = useContext(TokenContext);
+  const { token, setToken } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [quackDetail, setQuackDetail] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [showInput, setShowInput] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [comment, setComment] = useState();
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const { quackId } = useParams();
 
-  console.log(user);
+
 
   useEffect(() => {
     const getDetailsQuack = async (quackId) => {
@@ -50,6 +52,19 @@ const QuackDetail = () => {
     getAllComments(quackId);
   }, [showInput]);
 
+  const logoutUser = async (e) => {
+    e.preventDefault();
+    const res = await fetch(`${backendUrl}/api/v1/user/logout`, {
+      method: "POST",
+      credentials: "include"
+    });
+
+    const data = await res.json();
+    if (!data.result) return alert("Could not log out");
+    console.log(data.result);
+    setToken("");
+    navigate("/login");
+  };
 
 
   const createComment = async (e) => {
@@ -83,8 +98,11 @@ const QuackDetail = () => {
         </div>
       </Link>
       <h2>Quack</h2>
-      <CiSettings />
+      <div onClick={() => setShowSidebar(true)}>
+        <CiSettings />
+      </div>
     </div>
+    <Sidebar logoutUser={logoutUser} setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
     {quackDetail ? (
       <>
         <div className="userInfo" >
@@ -92,13 +110,13 @@ const QuackDetail = () => {
             <img className="profilepicbig" src="/img/goose_white.png" alt="" />
           </div>
           <div >
-            <h4>{quackDetail.userId.firstname} {quackDetail.userId.lastname}</h4>
-            <h4>{quackDetail.userId.username}</h4>
+            <h3>{quackDetail.userId.firstname} {quackDetail.userId.lastname}</h3>
+            <h4>@{quackDetail.userId.username}</h4>
           </div>
 
         </div>
-        <h3> {quackDetail.quackText}</h3>
-        <p > {quackDetail.Date}</p>
+        <h6> {quackDetail.quackText}</h6>
+        <p className="date"> {quackDetail.Date}</p>
         <div className="icons detailicon">
           <div onClick={() => setShowInput(!showInput)}>
             <Comments />

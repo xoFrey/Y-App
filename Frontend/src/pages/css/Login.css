@@ -36,9 +36,15 @@
   margin-bottom: 20px;
   color: white;
   font-size: 17px;
+  cursor: pointer;
 }
 
 .login p {
   text-align: center;
   width: 24ch;
+
+}
+
+.login a{
+    color: #fe854c;
 }

@@ -35,6 +35,11 @@ const loginUserCtrl = async (req, res) => {
   }
 };
 
+const logoutUserCtrl = async (req, res) => {
+  req.session.refreshToken = null;
+  res.status(200).json({ result: { message: "you are now logged out" } });
+};
+
 const verifyUserCtrl = async (req, res) => {
   try {
     const userInfo = {
@@ -104,4 +109,5 @@ export const UserController = {
   unfollowUserCtrl,
   refreshTokenCtrl,
   getAllUserCtrl,
+  logoutUserCtrl,
 };
