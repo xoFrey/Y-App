@@ -3,32 +3,34 @@ import { Link } from "react-router-dom";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 const Quacks = ({ quack }) => {
-    return <div key={quack._id} className="quack">
-        <article>
-            <div className="img-container">
-                <img src="/img/goose_white.png" alt="" />
-            </div>
-            <div>
-                <div className="nameInfo">
-                    <h4>
-                        {quack.userId.firstname} {quack.userId.lastname}
-                    </h4>
-                    <h5>@{quack.userId.username}</h5>
+    return <Link to={`/quackdetail/${quack._id}`}>
+        <div key={quack._id} className="quack">
+            <article>
+                <div className="img-container">
+                    <img src="/img/goose_white.png" alt="" />
                 </div>
-                {/* <p>{quack.Date}</p> */}
-                <p>{quack.quackText}</p>
+                <div>
+                    <div className="nameInfo">
+                        <h4>
+                            {quack.userId.firstname} {quack.userId.lastname}
+                        </h4>
+                        <h5>@{quack.userId.username}</h5>
+                    </div>
+                    {/* <p>{quack.Date}</p> */}
+                    <p>{quack.quackText}</p>
 
 
-                <div className="icons">
-                    <Link to={`/quackdetail/${quack._id}`}>
-                        <Comments />
-                    </Link>
-                    <AiOutlineRetweet />
-                    <FaRegHeart />
+                    <div className="icons">
+                        <Link to={`/quackdetail/${quack._id}`}>
+                            <Comments />
+                        </Link>
+                        <AiOutlineRetweet />
+                        <FaRegHeart />
+                    </div>
                 </div>
-            </div>
-        </article>
-    </div>;
+            </article>
+        </div>
+    </Link>;
 };
 
 export default Quacks;

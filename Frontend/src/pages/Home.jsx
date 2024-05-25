@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import QuackButton from "../components/QuackButton";
 
 import Quacks from "../components/Quacks";
+import { CiSettings } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 
 
@@ -45,7 +47,15 @@ const Home = () => {
 
   return (
     <section className="home">
-      <Header />
+      <div className="home-head">
+        <Link to={`/profile/${user._id}`}>
+          <div className="container img-container">
+            <img className="profilepic" src="/img/goose_white.png" alt="" />
+          </div>
+        </Link>
+        <img className="middlepic" src="/img/goose_white.png" alt="" />
+        <CiSettings />
+      </div>
 
       <QuackButton />
       {quacks?.map((quack) => (

@@ -28,6 +28,7 @@ const Profile = () => {
       setQuacks(data.result);
     };
     fetchOwnQuacks();
+    setIsFollowing(user.following.includes(profileId));
   }, []);
 
 
@@ -72,7 +73,8 @@ const Profile = () => {
   return (
     <section className="profile">
       <div className="header">
-        <FaArrowLeft />
+        <Link to="/home">
+          <FaArrowLeft /></Link>
         <h3>Place a banner here</h3>
       </div>
       <main>
@@ -92,8 +94,8 @@ const Profile = () => {
             <p>{quacks[0].userId.following.length} Followers</p>
           </div>
           <div className="likes-quacks">
-            <h3 className={active ? `active-button` : ``} onClick={() => handleOnClick()}>Quacks</h3>
-            <h3 className={active ? `` : `active-button`} onClick={() => handleOnClick()}>Likes</h3>
+            <h3 className={active ? "" : `active-button`} onClick={() => handleOnClick()}>Quacks</h3>
+            <h3 className={active ? `active-button` : ""} onClick={() => handleOnClick()}>Likes</h3>
 
           </div>
         </div> : <p>Loading</p>}

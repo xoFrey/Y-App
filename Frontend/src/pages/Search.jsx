@@ -2,12 +2,13 @@ import { CiSettings } from "react-icons/ci";
 import "./css/Search.css";
 import { useContext, useEffect, useState } from "react";
 import { backendUrl } from "../api/api";
-import { TokenContext } from "../components/context";
+import { TokenContext, UserContext } from "../components/context";
 import QuackButton from "../components/QuackButton";
 import { Link } from "react-router-dom";
 
 const Search = () => {
   const { token } = useContext(TokenContext);
+  const { user } = useContext(UserContext);
   const [searchInput, setSearchInput] = useState("");
   const [allUser, setAllUser] = useState();
 
@@ -32,9 +33,11 @@ const Search = () => {
   return (
     <section className="search">
       <div className="search-form">
-        <div className="img-container container">
-          <img src="/img/goose_white.png" alt="" />
-        </div>
+        <Link to={`/profile/${user._id}`}>
+          <div className="img-container container">
+            <img src="/img/goose_white.png" alt="" />
+          </div>
+        </Link>
         <input
           type="text"
           placeholder="Search"

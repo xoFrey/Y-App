@@ -4,7 +4,7 @@ import "./css/Header.css";
 
 const Header = () => {
     return <header>
-        <Link to="/">
+        <Link to="/home">
             <FaArrowLeft />
         </Link>
         <div>

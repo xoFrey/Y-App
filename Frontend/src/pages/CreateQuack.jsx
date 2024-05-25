@@ -45,7 +45,7 @@ const CreateQuack = () => {
   return (
     <main className="quackpage">
       <div className="quack-head">
-        <button className="cancel">Cancel</button>
+        <button className="cancel" onClick={() => navigate("/home")}>Cancel</button>
         <button className="quack-btn" onClick={createQuack}>Quack!</button>
       </div>
       <form className="quack-form">

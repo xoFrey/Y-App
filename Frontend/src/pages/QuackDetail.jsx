@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { backendUrl } from "../api/api";
 import { TokenContext, UserContext } from "../components/context";
-import { FaRegComment } from "react-icons/fa";
+import { FaRegComment, FaRegHeart } from "react-icons/fa";
+import { AiOutlineRetweet } from "react-icons/ai";
 import "./css/QuackDetail.css";
 import Comments from "../components/Comments";
+import { CiSettings } from "react-icons/ci";
 
 const QuackDetail = () => {
   const { token } = useContext(TokenContext);
@@ -74,36 +76,54 @@ const QuackDetail = () => {
   };
 
   return <section className="quackDetail">
-    <h2>Quack</h2>
-    <div className="border"></div>
+    <div className="detail-head">
+      <Link to={`/profile/${user._id}`}>
+        <div className="container img-container">
+          <img className="profilepic" src="/img/goose_white.png" alt="" />
+        </div>
+      </Link>
+      <h2>Quack</h2>
+      <CiSettings />
+    </div>
     {quackDetail ? (
       <>
         <div className="userInfo" >
-          <img src="/img/goose_white.png" alt="" />
+          <div className="img-container">
+            <img className="profilepicbig" src="/img/goose_white.png" alt="" />
+          </div>
           <div >
             <h4>{quackDetail.userId.firstname} {quackDetail.userId.lastname}</h4>
             <h4>{quackDetail.userId.username}</h4>
           </div>
 
         </div>
-        <p> {quackDetail.quackText}</p>
+        <h3> {quackDetail.quackText}</h3>
+        <p > {quackDetail.Date}</p>
+        <div className="icons detailicon">
+          <div onClick={() => setShowInput(!showInput)}>
+            <Comments />
+          </div>
+          <AiOutlineRetweet />
+          <FaRegHeart />
+        </div>
+
       </>)
       : <p>Loading...</p>}
-    <div onClick={() => setShowInput(!showInput)}>
-      <Comments />
-    </div>
 
-    <div className={showInput ? ` ` : `dontShow`}>
+    <div className={showInput ? `showInput` : `dontShow`}>
       <form >
-        <input type="text" name="" id="" value={commentText} onChange={(e) => setCommentText(e.target.value)} />
+        <input type="text" name="" id="" value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Quack your reply" />
         <button onClick={createComment}>Submit</button>
       </form>
     </div>
     <article className="commentsection">
       {comment?.map((item) => (
-        <div key={item._id}>
-          <h4>{item.userId?.username} says:</h4>
-          <p>{item.commentText}</p>
+        <div key={item._id} >
+          <div className="pic-name">
+            <div className="container img-container"><img className="profilepic" src="/img/goose_white.png" alt="" /></div>
+            <h4>{item.userId?.firstname} <span>@{item.userId?.username}</span> </h4>
+          </div>
+          <h5 >{item.commentText}</h5>
         </div>
       ))}
     </article>
