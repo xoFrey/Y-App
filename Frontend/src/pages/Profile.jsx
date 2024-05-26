@@ -113,11 +113,11 @@ const Profile = () => {
         </div>
 
         <section >
-          {quacks ? quacks.map((quack) => (
+          {quacks?.length > 0 ? quacks.map((quack) => (
             <Quacks key={quack._id} quack={quack} />
           ))
             :
-            <p> You gotta Quack something!</p>
+            <div className="empty"><p >Quack something!</p></div>
           }
         </section>
       </main>

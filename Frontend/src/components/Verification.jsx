@@ -5,7 +5,7 @@ import { backendUrl } from "../api/api";
 
 
 const Verification = () => {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const { token } = useContext(TokenContext);
     const [isVerified, setIsVerified] = useState(user.isVerified);
     const [showBox, setShowBox] = useState(false);
@@ -37,7 +37,7 @@ const Verification = () => {
         const data = await res.json();
         if (!data.result)
             return setErrorMessage(data.message || "Failed to Send Email");
-
+        window.location.reload();
     };
 
 

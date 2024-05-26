@@ -63,3 +63,7 @@ textarea:focus{
 }
 
 
+.verification-box{
+    position: fixed;
+    top:85px;
+}

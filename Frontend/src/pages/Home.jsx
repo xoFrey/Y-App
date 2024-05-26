@@ -83,12 +83,12 @@ const Home = () => {
       <Sidebar logoutUser={logoutUser} setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
       <QuackButton />
       <Verification />
-      {filteredQuacks?.map((quack) => (
+      {filteredQuacks.length > 0 ? filteredQuacks?.map((quack) => (
         <div key={quack._id}>
           <Quacks quack={quack} />
         </div>
-      ))}
-    </section>
+      )) : <div className="empty"><p >Quack something! Or follow someones Quacks!</p></div>}
+    </section >
   );
 };
 

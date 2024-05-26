@@ -3,6 +3,8 @@ import { TokenContext, UserContext, RefreshContext } from "../components/context
 import { backendUrl } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import "./css/CreateQuack.css";
+import Verification from "../components/Verification";
+import Header from "../components/Header";
 
 const CreateQuack = () => {
   const { user, setUser } = useContext(UserContext);
@@ -42,8 +44,9 @@ const CreateQuack = () => {
 
 
 
-  return (
-    <main className="quackpage">
+  return (<>
+    {user.isVerified ? <main className="quackpage">
+
       <div className="quack-head">
         <button className="cancel" onClick={() => navigate("/home")}>Cancel</button>
         <button className="quack-btn" onClick={createQuack}>Quack!</button>
@@ -60,7 +63,14 @@ const CreateQuack = () => {
           ></textarea>
         </div>
       </form>
-    </main>
+    </main> : <div>
+      <Header />
+      <div className="verification-box">
+        <Verification />
+      </div>
+    </div>}
+
+  </>
   );
 };
 
