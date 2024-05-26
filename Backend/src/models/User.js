@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema(
     firstname: { type: String, required: true, trim: true },
     lastname: { type: String, required: true, trim: true },
     email: { type: String, required: true, trim: true },
+    imgUrl: { type: String, default: "/img/goose_white.png" },
     bio: {
       type: String,
       default: "Hi, I am now using Y-App. Its better than X.",

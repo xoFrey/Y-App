@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import multer from "multer";
 import morgan from "morgan";
 import cookieSession from "cookie-session";
 import { userRoute } from "./routes/userRoute.js";
@@ -33,6 +34,11 @@ app.use(cookieSession(cookieSessionOptions));
 
 app.use(morgan("dev"));
 app.use(express.json());
+
+const upload = multer({ dest: "./uploads" });
+app.post("/api/v1/files/upload", upload.single("pictures"), (req, res) => {
+  res.json({ imgUrl: req.file.filename });
+});
 
 // *routes
 app.use("/api/v1/user", userRoute);

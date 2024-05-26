@@ -16,5 +16,6 @@ export const userRoute = express
     UserController.sendVerificationMailCtrl,
   )
   .post("/refresh-token", validateRefreshToken, UserController.refreshTokenCtrl)
+  .patch("/:userId", doJwtAuth, UserController.editProfileCtrl)
   .patch("/follow/:followingUserId", UserController.followUserCtrl)
   .patch("/unfollow/:unfollowUserId", UserController.unfollowUserCtrl);

@@ -14,10 +14,15 @@ const Profile = () => {
   const { token } = useContext(TokenContext);
   const [active, setActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isFollowing, setIsFollowing] = useState(user.following.includes(profileId));
+  const [isFollowing, setIsFollowing] = useState(user.following?.includes(profileId));
   const [userProfile, setUserProfile] = useState({});
+  const [showEdit, setShowEdit] = useState(false);
+  const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [bio, setBio] = useState("");
+  const [upload, setUpload] = useState();
 
-  console.log(isFollowing);
 
 
   useEffect(() => {
@@ -44,7 +49,7 @@ const Profile = () => {
     getProfileUser();
     setIsFollowing(user.following.includes(profileId));
 
-  }, [user.following]);
+  }, [user.following, user]);
 
   const followUser = async () => {
     const res = await fetch(`${backendUrl}/api/v1/user/follow/${profileId}`,
@@ -81,7 +86,48 @@ const Profile = () => {
     setActive(!active);
   };
 
+  const handleShowEdit = () => {
+    setShowEdit(!showEdit);
+    setUsername(user.username);
+    setFirstname(user.firstname);
+    setLastname(user.lastname);
+    setBio(user.bio);
+    // setUpload(user.imgUrl);
+  };
 
+  const editProfile = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("pictures", upload);
+    const res = await fetch(`${backendUrl}/api/v1/files/upload`, {
+      method: "POST",
+      headers: { authorization: `Bearer ${token}` },
+      body: formData
+    });
+
+    const data = await res.json();
+    console.log(data);
+    const updateInfo = {
+      username: username,
+      firstname: firstname,
+      lastname: lastname,
+      bio: bio,
+      imgUrl: data.imgUrl
+    };
+    const update = await fetch(`${backendUrl}/api/v1/user/${user._id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json", authorization: `Bearer ${token}` },
+      body: JSON.stringify(updateInfo)
+    });
+
+    const updatedProfile = await update.json();
+    const data2 = updatedProfile.result;
+    setUser((info) => ({ info, ...data2 }));
+    setShowEdit(false);
+  };
+
+  console.log(user);
 
   return (
     <section className="profile">
@@ -94,10 +140,22 @@ const Profile = () => {
         <div className="pic-button">
           <div className="img-container">
             <img src="/img/goose_white.png" alt="" />
+            {/* <img src={`${backendUrl}/${user.imgUrl}`} alt="" /> */}
           </div>
-          {isFollowing ? <button onClick={unfollowUser}>Unfollow</button> : <button onClick={followUser}>Follow</button>}
 
+          {user._id === profileId ? <button onClick={() => handleShowEdit()}>Edit Profile</button> : (isFollowing ? <button onClick={unfollowUser}>Unfollow</button> : <button onClick={followUser}>Follow</button>)}
         </div>
+        <form className={`${showEdit ? "form-edit  " : "hide"}`}>
+          <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" placeholder="Firstname" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+          <input type="text" placeholder="Lastname" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+          <input type="text" placeholder="Biography" value={bio} onChange={(e) => setBio(e.target.value)} />
+          <div>
+            <label className="custom-upload">  <input type="file" onChange={(e) => setUpload(e.target.files[0])} /> Upload Picture</label>
+            <button onClick={editProfile}>Submit</button>
+          </div>
+
+        </form>
         <div className="profile-info">
           <h2>{userProfile.firstname} {userProfile.lastname} </h2>
           <h4>@{userProfile.username}</h4>

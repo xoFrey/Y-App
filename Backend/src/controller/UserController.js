@@ -111,6 +111,18 @@ const refreshTokenCtrl = async (req, res) => {
   }
 };
 
+const editProfileCtrl = async (req, res) => {
+  try {
+    const updateInfo = req.body;
+    const userId = req.params.userId;
+    const result = await UserService.editProfile(userId, updateInfo);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
 export const UserController = {
   registerUserCtrl,
   loginUserCtrl,
@@ -122,4 +134,5 @@ export const UserController = {
   getAllUserCtrl,
   logoutUserCtrl,
   getOneUserCtrl,
+  editProfileCtrl,
 };

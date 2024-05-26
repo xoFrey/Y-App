@@ -1,6 +1,7 @@
 import { createComment } from "./createComment.js";
 import { createQuack } from "./createQuack.js";
 import { deleteQuack } from "./deleteQuack.js";
+import { editProfile } from "./editProfile.js";
 import { followUser } from "./followUser.js";
 import { getAllComments } from "./getAllComments.js";
 import { getAllQuacks } from "./getAllQuacks.js";
@@ -26,6 +27,7 @@ export const UserService = {
   refreshToken,
   getAllUser,
   getOneUser,
+  editProfile,
 };
 
 export const QuackService = {
