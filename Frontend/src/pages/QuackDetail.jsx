@@ -94,7 +94,7 @@ const QuackDetail = () => {
     <div className="detail-head">
       <Link to={`/profile/${user._id}`}>
         <div className="container img-container">
-          <img className="profilepic" src="/img/goose_white.png" alt="" />
+          <img className="prof-pic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
         </div>
       </Link>
       <h2>Quack</h2>
@@ -107,7 +107,7 @@ const QuackDetail = () => {
       <>
         <div className="userInfo" >
           <div className="img-container">
-            <img className="profilepicbig" src="/img/goose_white.png" alt="" />
+            <img className="prof-pic" src={`${backendUrl}/${quackDetail.userId.imgUrl}`} alt="" />
           </div>
           <div >
             <h3>{quackDetail.userId.firstname} {quackDetail.userId.lastname}</h3>
@@ -138,7 +138,7 @@ const QuackDetail = () => {
       {comment?.map((item) => (
         <div key={item._id} >
           <div className="pic-name">
-            <div className="container img-container"><img className="profilepic" src="/img/goose_white.png" alt="" /></div>
+            <div className="container img-container">    <img className="prof-pic" src={`${backendUrl}/${item.userId.imgUrl}`} alt="" /></div>
             <h4>{item.userId?.firstname} <span>@{item.userId?.username}</span> </h4>
           </div>
           <h5 >{item.commentText}</h5>

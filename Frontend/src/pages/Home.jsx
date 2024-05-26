@@ -72,7 +72,7 @@ const Home = () => {
       <div className="home-head">
         <Link to={`/profile/${user._id}`}>
           <div className="container img-container">
-            <img className="profilepic" src="/img/goose_white.png" alt="" />
+            <img className="prof-pic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
           </div>
         </Link>
         <img className="middlepic" src="/img/goose_white.png" alt="" />

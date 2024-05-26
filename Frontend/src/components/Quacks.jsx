@@ -2,12 +2,16 @@ import Comments from "../components/Comments";
 import { Link } from "react-router-dom";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
+import { backendUrl } from "../api/api";
+import { useContext } from "react";
+import { UserContext } from "./context";
 const Quacks = ({ quack }) => {
+    const { user } = useContext(UserContext);
     return <Link to={`/quackdetail/${quack._id}`}>
         <div key={quack._id} className="quack">
             <article>
                 <div className="img-container">
-                    <img src="/img/goose_white.png" alt="" />
+                    <img className="prof-pic" src={`${backendUrl}/${quack.userId.imgUrl}`} alt="" />
                 </div>
                 <div>
                     <div className="nameInfo">

@@ -54,7 +54,7 @@ const Search = () => {
       <div className="search-form">
         <Link to={`/profile/${user._id}`}>
           <div className="img-container container">
-            <img src="/img/goose_white.png" alt="" />
+            <img className="prof-pic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
           </div>
         </Link>
         <input
@@ -74,7 +74,8 @@ const Search = () => {
           <Link to={`/profile/${user._id}`}>
             <article className="search-profile">
               <div className="img-container ">
-                <img src="/img/goose_white.png" alt="" />
+                <img className="profilepic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
+
               </div>
               <div className="search-name">
                 <h4>{user.firstname}</h4>

@@ -54,7 +54,7 @@ const CreateQuack = () => {
       <form className="quack-form">
         <div>
           <div className="container img-container">
-            <img src="/img/goose_white.png" alt="" />
+            <img className="prof-pic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
           </div>
           <textarea
             value={textInput}

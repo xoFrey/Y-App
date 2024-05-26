@@ -29,9 +29,6 @@
   
 }
 
-.quack-form{
-   
-}
 
 .quack-form div{
     display: flex;
@@ -40,10 +37,6 @@
    
 }
 
-.quack-form img{
-    width: 70%;
-        margin: 6px 5px;
-}
 
 .quack-form button {
     margin-top: 20px;

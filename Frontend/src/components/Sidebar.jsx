@@ -5,6 +5,7 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { RiFileList2Line } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { backendUrl } from "../api/api";
 
 const Sidebar = ({ logoutUser, showSidebar, setShowSidebar }) => {
     const { user } = useContext(UserContext);
@@ -12,7 +13,7 @@ const Sidebar = ({ logoutUser, showSidebar, setShowSidebar }) => {
     return <section className={`sidebar ${showSidebar ? "show-sidebar" : "hide-sidebar"}`}>
         <div className="sidebar-button">
             <div className="img-container container">
-                <img className="profilepic" src="/img/goose_white.png" alt="" />
+                <img className="prof-pic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
             </div>
             <div onClick={() => setShowSidebar(false)}>
                 <IoMdCloseCircleOutline />

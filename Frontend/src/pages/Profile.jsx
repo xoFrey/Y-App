@@ -92,28 +92,32 @@ const Profile = () => {
     setFirstname(user.firstname);
     setLastname(user.lastname);
     setBio(user.bio);
-    // setUpload(user.imgUrl);
   };
 
   const editProfile = async (e) => {
     e.preventDefault();
+    let imgUrl;
+    if (upload) {
+      const formData = new FormData();
+      formData.append("pictures", upload, upload.name);
+      const res = await fetch(`${backendUrl}/api/v1/files/upload`, {
+        method: "POST",
+        headers: { authorization: `Bearer ${token}` },
+        body: formData
+      });
 
-    const formData = new FormData();
-    formData.append("pictures", upload);
-    const res = await fetch(`${backendUrl}/api/v1/files/upload`, {
-      method: "POST",
-      headers: { authorization: `Bearer ${token}` },
-      body: formData
-    });
+      const data = await res.json();
+      imgUrl = data.imgUrl;
+    } else {
+      imgUrl = user.imgUrl;
+    }
 
-    const data = await res.json();
-    console.log(data);
     const updateInfo = {
       username: username,
       firstname: firstname,
       lastname: lastname,
       bio: bio,
-      imgUrl: data.imgUrl
+      imgUrl: imgUrl
     };
     const update = await fetch(`${backendUrl}/api/v1/user/${user._id}`, {
       method: "PATCH",
@@ -123,11 +127,9 @@ const Profile = () => {
 
     const updatedProfile = await update.json();
     const data2 = updatedProfile.result;
-    setUser((info) => ({ info, ...data2 }));
+    setUser((info) => ({ ...info, ...data2 }));
     setShowEdit(false);
   };
-
-  console.log(user);
 
   return (
     <section className="profile">
@@ -139,8 +141,7 @@ const Profile = () => {
       <main>
         <div className="pic-button">
           <div className="img-container">
-            <img src="/img/goose_white.png" alt="" />
-            {/* <img src={`${backendUrl}/${user.imgUrl}`} alt="" /> */}
+            <img className="prof-pic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
           </div>
 
           {user._id === profileId ? <button onClick={() => handleShowEdit()}>Edit Profile</button> : (isFollowing ? <button onClick={unfollowUser}>Unfollow</button> : <button onClick={followUser}>Follow</button>)}
@@ -178,6 +179,7 @@ const Profile = () => {
             <div className="empty"><p >Quack something!</p></div>
           }
         </section>
+
       </main>
     </section >
   );

@@ -34,6 +34,7 @@ app.use(cookieSession(cookieSessionOptions));
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.static("uploads"));
 
 const upload = multer({ dest: "./uploads" });
 app.post("/api/v1/files/upload", upload.single("pictures"), (req, res) => {

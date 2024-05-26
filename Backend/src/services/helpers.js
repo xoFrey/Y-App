@@ -4,6 +4,7 @@ export const userToView = (user) => {
     firstname: user.firstname,
     lastname: user.lastname,
     username: user.username,
+    imgUrl: user.imgUrl,
     email: user.email,
     bio: user.bio,
     quacks: user.quacks,
