@@ -8,15 +8,17 @@ import Quacks from "../components/Quacks";
 
 
 const Profile = () => {
-  const { user } = useContext(UserContext);
+  const { profileId } = useParams();
+  const { user, setUser } = useContext(UserContext);
   const [quacks, setQuacks] = useState();
   const { token } = useContext(TokenContext);
   const [active, setActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(user.following.includes(profileId));
   const [userProfile, setUserProfile] = useState({});
 
-  const { profileId } = useParams();
+  console.log(isFollowing);
+
 
   useEffect(() => {
     const fetchOwnQuacks = async () => {
@@ -29,7 +31,6 @@ const Profile = () => {
       setQuacks(data.result);
     };
     fetchOwnQuacks();
-    setIsFollowing(user.following.includes(profileId));
 
     const getProfileUser = async () => {
       const res = await fetch(`${backendUrl}/api/v1/user/${profileId}`, {
@@ -41,8 +42,9 @@ const Profile = () => {
       setUserProfile(data.result);
     };
     getProfileUser();
+    setIsFollowing(user.following.includes(profileId));
 
-  }, []);
+  }, [user.following]);
 
   const followUser = async () => {
     const res = await fetch(`${backendUrl}/api/v1/user/follow/${profileId}`,
@@ -55,8 +57,9 @@ const Profile = () => {
     const data = await res.json();
     if (!data.result)
       return setErrorMessage(data.message || "Failed to Follow");
-    setIsFollowing(user.following.includes(profileId));
 
+    setUser((user) => ({ ...user, following: [...user.following, profileId] }));
+    setIsFollowing(true);
   };
 
   const unfollowUser = async () => {
@@ -70,13 +73,15 @@ const Profile = () => {
     const data = await res.json();
     if (!data.result)
       return setErrorMessage(data.message || "Failed to Follow");
-
-    setIsFollowing(data.result.user.following.includes(profileId));
+    setUser((user) => ({ ...user, following: user.following.filter((id) => id !== profileId) }));
+    setIsFollowing(false);
   };
 
   const handleOnClick = () => {
     setActive(!active);
   };
+
+
 
   return (
     <section className="profile">
@@ -90,7 +95,7 @@ const Profile = () => {
           <div className="img-container">
             <img src="/img/goose_white.png" alt="" />
           </div>
-          {isFollowing ? <button onClick={() => unfollowUser()}>Unfollow</button> : <button onClick={() => followUser()}>Follow</button>}
+          {isFollowing ? <button onClick={unfollowUser}>Unfollow</button> : <button onClick={followUser}>Follow</button>}
 
         </div>
         <div className="profile-info">
@@ -98,8 +103,8 @@ const Profile = () => {
           <h4>@{userProfile.username}</h4>
           <p>{userProfile.bio}</p>
           <div className="follow">
-            <p>{userProfile.following.length} Following</p>
-            <p>{userProfile.following.length} Followers</p>
+            <p>{userProfile.following?.length} Following</p>
+            <p>{userProfile.following?.length} Followers</p>
           </div>
           <div className="likes-quacks">
             <h3 className={active ? "" : `active-button`} onClick={() => handleOnClick()}>Quacks</h3>
@@ -116,7 +121,7 @@ const Profile = () => {
           }
         </section>
       </main>
-    </section>
+    </section >
   );
 };
 

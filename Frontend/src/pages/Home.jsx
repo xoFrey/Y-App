@@ -10,15 +10,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Verification from "../components/Verification";
 
-
-
-
 const Home = () => {
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext);
   const { refresh, setRefresh } = useContext(RefreshContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [quacks, setQuacks] = useState();
+  const [filteredQuacks, setFilteredQuacks] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
 
 
@@ -37,12 +35,22 @@ const Home = () => {
         return setErrorMessage(data.message || "Failed to fetch Quacks");
 
 
-      const filtered = data.result.filter(async (item) => await user.following.includes(item.userId._id) || await user.quacks.includes(item._id));
-
-      setQuacks(filtered);
+      setQuacks(data.result);
     };
     fetchAllQuacks();
+
   }, [refresh]);
+
+  useEffect(() => {
+    if (user && quacks?.length > 0) {
+      const filtered = quacks?.filter((item) => (user.quacks.includes(item._id) || user.following.includes(item.userId._id)));
+      console.log({ filtered });
+      setFilteredQuacks(filtered);
+    }
+  }, [user.following, user, quacks]);
+
+
+
 
   const logoutUser = async (e) => {
     e.preventDefault();
@@ -75,8 +83,10 @@ const Home = () => {
       <Sidebar logoutUser={logoutUser} setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
       <QuackButton />
       <Verification />
-      {quacks?.map((quack) => (
-        <Quacks quack={quack} />
+      {filteredQuacks?.map((quack) => (
+        <div key={quack._id}>
+          <Quacks quack={quack} />
+        </div>
       ))}
     </section>
   );

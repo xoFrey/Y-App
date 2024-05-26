@@ -28,7 +28,7 @@ const Sidebar = ({ logoutUser, showSidebar, setShowSidebar }) => {
             <Link to={`/profile/${user._id}`}>
                 <FaRegUser />  Profile
             </Link>
-            <Link to={``}>
+            <Link to={`/home`}>
                 <RiFileList2Line />  Dashboard
             </Link>
             <Link to={`/messages`}>

@@ -21,9 +21,9 @@ const Quacks = ({ quack }) => {
 
 
                     <div className="icons">
-                        <Link to={`/quackdetail/${quack._id}`}>
-                            <Comments />
-                        </Link>
+
+                        <Comments />
+
                         <AiOutlineRetweet />
                         <FaRegHeart />
                     </div>
