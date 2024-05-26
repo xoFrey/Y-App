@@ -8,5 +8,6 @@ export const userToView = (user) => {
     bio: user.bio,
     quacks: user.quacks,
     following: user.following,
+    isVerified: user.isVerified,
   };
 };

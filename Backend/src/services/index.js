@@ -7,6 +7,7 @@ import { getAllQuacks } from "./getAllQuacks.js";
 import { getAllUser } from "./getAllUser.js";
 import { getAllUserQuacks } from "./getAllUserQuacks.js";
 import { getOneQuack } from "./getOneQuack.js";
+import { getOneUser } from "./getOneUser.js";
 import { loginUser } from "./loginUser.js";
 import { refreshToken } from "./refreshToken.js";
 import { registerUser } from "./registerUser.js";
@@ -24,6 +25,7 @@ export const UserService = {
   unfollowUser,
   refreshToken,
   getAllUser,
+  getOneUser,
 };
 
 export const QuackService = {

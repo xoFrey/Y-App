@@ -49,7 +49,7 @@ function App() {
                 ></Route>
                 <Route path="/" element={<LoginPage />}></Route>
                 <Route path="/register" element={<Register />}></Route>
-                <Route path="/messages" element={<Messages />}></Route>
+                <Route path="/messages" element={<AuthRequired><Messages /></AuthRequired>}></Route>
                 <Route
                   path="/profile/:profileId"
                   element={
@@ -58,7 +58,7 @@ function App() {
                     </AuthRequired>
                   }
                 ></Route>
-                <Route path="/search" element={<Search />}></Route>
+                <Route path="/search" element={<AuthRequired><Search /></AuthRequired>}></Route>
                 <Route path="/settings" element={<AuthRequired><Settings /></AuthRequired>}></Route>
                 <Route path="/quackdetail/:quackId" element={
                   <AuthRequired>

@@ -4,16 +4,17 @@ import { backendUrl } from "../api/api";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import "./css/Profile.css";
-import Comments from "../components/Comments";
 import Quacks from "../components/Quacks";
 
+
 const Profile = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [quacks, setQuacks] = useState();
-  const { token, setToken } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const [active, setActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isFollowing, setIsFollowing] = useState(false);
+  const [userProfile, setUserProfile] = useState({});
 
   const { profileId } = useParams();
 
@@ -29,9 +30,19 @@ const Profile = () => {
     };
     fetchOwnQuacks();
     setIsFollowing(user.following.includes(profileId));
+
+    const getProfileUser = async () => {
+      const res = await fetch(`${backendUrl}/api/v1/user/${profileId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (!data.result)
+        return setErrorMessage(data.message || "Failed to fetch OwnQuacks");
+      setUserProfile(data.result);
+    };
+    getProfileUser();
+
   }, []);
-
-
 
   const followUser = async () => {
     const res = await fetch(`${backendUrl}/api/v1/user/follow/${profileId}`,
@@ -47,8 +58,6 @@ const Profile = () => {
     setIsFollowing(user.following.includes(profileId));
 
   };
-
-
 
   const unfollowUser = async () => {
     const res = await fetch(`${backendUrl}/api/v1/user/unfollow/${profileId}`,
@@ -69,7 +78,6 @@ const Profile = () => {
     setActive(!active);
   };
 
-
   return (
     <section className="profile">
       <div className="header">
@@ -85,25 +93,27 @@ const Profile = () => {
           {isFollowing ? <button onClick={() => unfollowUser()}>Unfollow</button> : <button onClick={() => followUser()}>Follow</button>}
 
         </div>
-        {quacks ? <div className="profile-info">
-          <h2>{quacks[0].userId.firstname} {quacks[0].userId.lastname} </h2>
-          <h4>@{quacks[0].userId.username}</h4>
-          <p>{quacks[0].userId.bio}</p>
+        <div className="profile-info">
+          <h2>{userProfile.firstname} {userProfile.lastname} </h2>
+          <h4>@{userProfile.username}</h4>
+          <p>{userProfile.bio}</p>
           <div className="follow">
-            <p>{quacks[0].userId.following.length} Following</p>
-            <p>{quacks[0].userId.following.length} Followers</p>
+            <p>{userProfile.following.length} Following</p>
+            <p>{userProfile.following.length} Followers</p>
           </div>
           <div className="likes-quacks">
             <h3 className={active ? "" : `active-button`} onClick={() => handleOnClick()}>Quacks</h3>
             <h3 className={active ? `active-button` : ""} onClick={() => handleOnClick()}>Likes</h3>
-
           </div>
-        </div> : <p>Loading</p>}
+        </div>
 
         <section >
-          {quacks?.map((quack) => (
+          {quacks ? quacks.map((quack) => (
             <Quacks key={quack._id} quack={quack} />
-          ))}
+          ))
+            :
+            <p> You gotta Quack something!</p>
+          }
         </section>
       </main>
     </section>

@@ -8,6 +8,7 @@ import { CiSettings } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
+import Verification from "../components/Verification";
 
 
 
@@ -19,6 +20,7 @@ const Home = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [quacks, setQuacks] = useState();
   const [showSidebar, setShowSidebar] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -72,6 +74,7 @@ const Home = () => {
       </div>
       <Sidebar logoutUser={logoutUser} setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
       <QuackButton />
+      <Verification />
       {quacks?.map((quack) => (
         <Quacks quack={quack} />
       ))}

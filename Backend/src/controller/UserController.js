@@ -10,6 +10,17 @@ const getAllUserCtrl = async (req, res) => {
   }
 };
 
+const getOneUserCtrl = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const result = await UserService.getOneUser(userId);
+    res.json({ result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error, message: error.message });
+  }
+};
+
 const registerUserCtrl = async (req, res) => {
   try {
     const userInfo = req.body;
@@ -110,4 +121,5 @@ export const UserController = {
   refreshTokenCtrl,
   getAllUserCtrl,
   logoutUserCtrl,
+  getOneUserCtrl,
 };
