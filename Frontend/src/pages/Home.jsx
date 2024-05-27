@@ -42,12 +42,15 @@ const Home = () => {
   }, [refresh]);
 
   useEffect(() => {
+
     if (user && quacks?.length > 0) {
       const filtered = quacks?.filter((item) => (user.quacks.includes(item._id) || user.following.includes(item.userId._id)));
-      console.log({ filtered });
       setFilteredQuacks(filtered);
+      console.log(filteredQuacks);
     }
-  }, [user.following, user, quacks]);
+
+  }, [user.following, user, quacks, refresh]);
+
 
 
 

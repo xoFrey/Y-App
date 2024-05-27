@@ -171,7 +171,7 @@ const Profile = () => {
           </div>
         </div>
 
-        <section >
+        <section className="profile-quacks">
           {quacks?.length > 0 ? quacks.map((quack) => (
             <Quacks key={quack._id} quack={quack} />
           ))

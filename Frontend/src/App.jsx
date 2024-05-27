@@ -6,8 +6,6 @@ import LoginPage from "./pages/LoginPage";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
-import Settings from "./pages/Settings";
-import quackDetail from "./pages/QuackDetail";
 import { UserContext, TokenContext, RefreshContext } from "./components/context";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -59,7 +57,6 @@ function App() {
                   }
                 ></Route>
                 <Route path="/search" element={<AuthRequired><Search /></AuthRequired>}></Route>
-                <Route path="/settings" element={<AuthRequired><Settings /></AuthRequired>}></Route>
                 <Route path="/quackdetail/:quackId" element={
                   <AuthRequired>
                     <QuackDetail />
