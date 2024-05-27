@@ -44,7 +44,7 @@ const Home = () => {
   useEffect(() => {
 
     if (user && quacks?.length > 0) {
-      const filtered = quacks?.filter((item) => (user.quacks.includes(item._id) || user.following.includes(item.userId._id)));
+      const filtered = quacks?.filter((item) => (user.quacks.includes(item._id) || user.following.includes(item.userId?._id)));
       setFilteredQuacks(filtered);
       console.log(filteredQuacks);
     }
