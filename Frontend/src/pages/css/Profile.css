@@ -34,17 +34,6 @@
  
 }
 
-.prof-pic {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.img-container {
-  background-color: white;
-outline: 4px solid white
-}
-
 .profile main button {
       cursor: pointer;
         padding: 5px 10px ;
@@ -57,7 +46,6 @@ outline: 4px solid white
 }
 
 .profile-info{
- 
   border-bottom: 1px solid rgb(224, 224, 224);
 }
 
@@ -94,7 +82,6 @@ outline: 4px solid white
 }
 
 .active-button{
-
 border-bottom: 2px solid #fe854c;
 }
 
@@ -117,12 +104,12 @@ border-bottom: 2px solid #fe854c;
 }
 
 .form-edit input[type=text]{
-      border-radius: 20px;
-        padding: 5px;
-        width: 50%;
-        border-bottom: 1px solid rgb(224, 224, 224);
-        border-style: none;
-        border: 1px solid rgb(172, 172, 172);
+  border-radius: 20px;
+  padding: 5px;
+  width: 50%;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  border-style: none;
+  border: 1px solid rgb(172, 172, 172);
 }
 
 
@@ -141,6 +128,3 @@ border-bottom: 2px solid #fe854c;
       cursor: pointer;
 }
 
-.profile-pic{
-
-}

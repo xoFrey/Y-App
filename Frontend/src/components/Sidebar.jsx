@@ -6,6 +6,7 @@ import { RiFileList2Line } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { backendUrl } from "../api/api";
+import "./css/Sidebar.css";
 
 const Sidebar = ({ logoutUser, showSidebar, setShowSidebar }) => {
     const { user } = useContext(UserContext);

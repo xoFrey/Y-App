@@ -8,11 +8,6 @@
     margin-bottom: 20px;
 }
 
-.profilepicbig{
-    width: 80%;
-        margin: 7px 6px;
-}
-
 .userInfo {
     display: flex;
     align-items: center;

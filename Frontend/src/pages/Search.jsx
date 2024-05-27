@@ -74,7 +74,7 @@ const Search = () => {
           <Link to={`/profile/${user._id}`}>
             <article className="search-profile">
               <div className="img-container ">
-                <img className="profilepic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
+                <img className="prof-pic" src={`${backendUrl}/${user.imgUrl}`} alt="" />
 
               </div>
               <div className="search-name">
