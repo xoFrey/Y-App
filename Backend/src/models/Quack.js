@@ -6,7 +6,7 @@ const quackSchema = new mongoose.Schema(
     quackText: { type: String, required: true, trim: true },
     Date: { type: String, required: true },
   },
-  { collection: "quacks" },
+  { collection: "quacks", timestamps: true },
 );
 
 export const Quack = mongoose.model("Quack", quackSchema);

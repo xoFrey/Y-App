@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
     quacks: [{ type: mongoose.Types.ObjectId, ref: "Tweets" }],
     following: [{ type: mongoose.Types.ObjectId, ref: "User" }],
   },
-  { collection: "users" },
+  { collection: "users", timestamps: true },
 );
 
 export const User = mongoose.model("User", userSchema);

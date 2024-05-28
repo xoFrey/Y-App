@@ -24,7 +24,8 @@ const getAllUserQuacksCtrl = async (req, res) => {
 
 const getAllQuacksCtrl = async (req, res) => {
   try {
-    const result = await QuackService.getAllQuacks();
+    const userId = req.params.userId;
+    const result = await QuackService.getAllQuacks(userId);
     res.json({ result });
   } catch (error) {
     console.log(error);

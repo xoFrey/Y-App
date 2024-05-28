@@ -7,7 +7,7 @@ const commentSchema = new mongoose.Schema(
     commentText: { type: String, required: true, trim: true },
     Date: { type: Date, required: true },
   },
-  { collection: "comments" },
+  { collection: "comments", timestamps: true },
 );
 
 export const Comments = mongoose.model("Comments", commentSchema);

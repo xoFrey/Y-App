@@ -27,7 +27,7 @@ const Home = () => {
 
     const fetchAllQuacks = async () => {
 
-      const res = await fetch(`${backendUrl}/api/v1/quacks`, {
+      const res = await fetch(`${backendUrl}/api/v1/quacks/dashboard/${user._id}`, {
         headers: { authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -40,19 +40,6 @@ const Home = () => {
     fetchAllQuacks();
 
   }, [refresh]);
-
-  useEffect(() => {
-
-    if (user && quacks?.length > 0) {
-      const filtered = quacks?.filter((item) => (user.quacks.includes(item._id) || user.following.includes(item.userId?._id)));
-      setFilteredQuacks(filtered);
-      console.log(filteredQuacks);
-    }
-
-  }, [user.following, user, quacks, refresh]);
-
-
-
 
 
   const logoutUser = async (e) => {
@@ -86,7 +73,7 @@ const Home = () => {
       <Sidebar logoutUser={logoutUser} setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
       <QuackButton />
       <Verification />
-      {filteredQuacks.length > 0 ? filteredQuacks?.map((quack) => (
+      {quacks?.length > 0 ? quacks?.map((quack) => (
         <div key={quack._id}>
           <Quacks quack={quack} />
         </div>

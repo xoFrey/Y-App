@@ -5,7 +5,7 @@ import { doJwtAuth } from "../middlewares/doJwtAuth.js";
 
 export const quackRoute = express
   .Router()
-  .get("/", QuackController.getAllQuacksCtrl)
+  .get("/dashboard/:userId", QuackController.getAllQuacksCtrl)
   .get("/user/:userId", QuackController.getAllUserQuacksCtrl)
   .get("/:quackId", QuackController.getOneQuackCtrl)
   .post("/", doJwtAuth, QuackController.createQuackCtrl)
