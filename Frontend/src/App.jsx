@@ -6,7 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
-import { UserContext, TokenContext, RefreshContext } from "./components/context";
+import {TokenContext, RefreshProvider, UserProvider } from "./components/context";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AuthRequired from "./components/AuthRequired";
@@ -15,11 +15,11 @@ import Navbar from "./components/Navbar";
 import LoadingPage from "./pages/LoadingPage";
 import QuackDetail from "./pages/QuackDetail";
 
+
 function App() {
-  const [user, setUser] = useState({});
   const [token, setToken] = useState("");
   const [timer, setTimer] = useState(true);
-  const [refresh, setRefresh] = useState(false);
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,9 +28,9 @@ function App() {
   }, []);
 
   return (
-    <RefreshContext.Provider value={{ refresh, setRefresh }}>
-      <TokenContext.Provider value={{ token, setToken }}>
-        <UserContext.Provider value={{ user, setUser }}>
+    <TokenContext.Provider value={{ token, setToken }}>
+        <UserProvider>
+        <RefreshProvider>
           {timer ? (
             <LoadingPage />
           ) : (
@@ -74,9 +74,9 @@ function App() {
               <Navbar />
             </BrowserRouter>
           )}
-        </UserContext.Provider>
+        </RefreshProvider>
+        </UserProvider>
       </TokenContext.Provider>
-    </RefreshContext.Provider>
   );
 }
 

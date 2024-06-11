@@ -9,7 +9,7 @@ import Header from "../components/Header";
 const CreateQuack = () => {
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext);
-  const { refresh, setRefresh } = useContext(RefreshContext);
+  const { fetchAllQuacks } = useContext(RefreshContext);
   const [textInput, setTextInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -37,7 +37,7 @@ const CreateQuack = () => {
     const data = await res.json();
     if (!data.result) return setErrorMessage(data.message);
     setTextInput("");
-    setRefresh(!refresh);
+    fetchAllQuacks();
     navigate("/home");
   };
 

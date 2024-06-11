@@ -6,8 +6,6 @@ import { FaPlus } from "react-icons/fa";
 
 const QuackButton = () => {
 
-
-
   return (
     <Link to="/createquack">
       <div className="createquack">

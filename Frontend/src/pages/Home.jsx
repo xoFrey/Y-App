@@ -12,34 +12,19 @@ import Verification from "../components/Verification";
 
 const Home = () => {
   const { user, setUser } = useContext(UserContext);
-  const { token, setToken } = useContext(TokenContext);
-  const { refresh, setRefresh } = useContext(RefreshContext);
+  const { setToken } = useContext(TokenContext);
+  const { fetchAllQuacks, quacks } = useContext(RefreshContext);
   const [errorMessage, setErrorMessage] = useState("");
-  const [quacks, setQuacks] = useState();
+
   const [filteredQuacks, setFilteredQuacks] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
 
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
-
-    const fetchAllQuacks = async () => {
-
-      const res = await fetch(`${backendUrl}/api/v1/quacks/dashboard/${user._id}`, {
-        headers: { authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      if (!data.result)
-        return setErrorMessage(data.message || "Failed to fetch Quacks");
-
-
-      setQuacks(data.result);
-    };
     fetchAllQuacks();
-
-  }, [refresh]);
+  }, []);
 
 
   const logoutUser = async (e) => {
