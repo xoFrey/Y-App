@@ -7,8 +7,8 @@ import "./css/Login.css";
 import Header from "../components/Header";
 
 const Login = () => {
-  const [email, setEmail] = useState("xizelacar@gmail.com");
-  const [password, setPassword] = useState("hallo");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext);
 
