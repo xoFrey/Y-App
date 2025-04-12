@@ -13,6 +13,10 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 const app = express();
+app.options(
+  "*",
+  cors({ origin: "https://y-app-zq2w.vercel.app", credentials: true }),
+);
 
 const twoWeeksInMs = 14 * 24 * 60 * 60 * 1000;
 const isFrontendLocalhost =
