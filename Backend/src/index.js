@@ -13,18 +13,32 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 const app = express();
+
+// Explicitly handle CORS preflight requests
 app.options(
   "*",
-  cors({ origin: "https://y-app-zq2w.vercel.app", credentials: true }),
+  cors({
+    origin: "https://y-app-zq2w.vercel.app",
+    credentials: true,
+  }),
 );
+
+// Use CORS middleware (should be first)
+app.use(
+  cors({
+    origin: "https://y-app-zq2w.vercel.app",
+    credentials: true,
+  }),
+);
+
+// Trust proxy for cookies if deploying on Vercel
+app.set("trust proxy", 1);
 
 const twoWeeksInMs = 14 * 24 * 60 * 60 * 1000;
 const isFrontendLocalhost =
   process.env.FRONTEND_URL.startsWith("http://localhost");
 const cookieSessionSecret = process.env.COOKIE_SESSION_SECRET;
 
-app.use(cors({ origin: "https://y-app-zq2w.vercel.app", credentials: true }));
-app.set("trust proxy", 1);
 const cookieSessionOptions = {
   name: "session",
   secret: cookieSessionSecret,
@@ -33,8 +47,8 @@ const cookieSessionOptions = {
   sameSite: isFrontendLocalhost ? "lax" : "none",
   secure: isFrontendLocalhost ? false : true,
 };
-app.use(cookieSession(cookieSessionOptions));
 
+app.use(cookieSession(cookieSessionOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.static("uploads"));
@@ -44,7 +58,7 @@ app.post("/api/v1/files/upload", upload.single("pictures"), (req, res) => {
   res.json({ imgUrl: req.file.filename });
 });
 
-// *routes
+// Routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/quacks", quackRoute);
 app.use("/api/v1/comments", commentRoute);
