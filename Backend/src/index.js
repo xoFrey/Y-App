@@ -19,9 +19,7 @@ const isFrontendLocalhost =
   process.env.FRONTEND_URL.startsWith("http://localhost");
 const cookieSessionSecret = process.env.COOKIE_SESSION_SECRET;
 
-app.use(
-  cors({ origin: "https://y-app-frontend.vercel.app", credentials: true }),
-);
+app.use(cors({ origin: "https://y-app-zq2w.vercel.app", credentials: true }));
 app.set("trust proxy", 1);
 const cookieSessionOptions = {
   name: "session",
