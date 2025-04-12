@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 import multer from "multer";
 import morgan from "morgan";
+import mongoose from "mongoose";
 import cookieSession from "cookie-session";
 import { userRoute } from "./routes/userRoute.js";
 import { quackRoute } from "./routes/quackRoute.js";
-import { connectToDB } from "./models/index.js";
 import { commentRoute } from "./routes/commentRoute.js";
 
 dotenv.config();
@@ -14,7 +14,6 @@ dotenv.config();
 const PORT = process.env.PORT;
 const app = express();
 
-// // *cookies
 const twoWeeksInMs = 14 * 24 * 60 * 60 * 1000;
 const isFrontendLocalhost =
   process.env.FRONTEND_URL.startsWith("http://localhost");
@@ -47,7 +46,7 @@ app.use("/api/v1/quacks", quackRoute);
 app.use("/api/v1/comments", commentRoute);
 
 try {
-  await connectToDB();
+  await mongoose.connect(process.env.MONGO_URL, { dbName: "Y-App" });
   app.listen(PORT, () => console.log("Server ready at", PORT));
 } catch (error) {
   console.log(error);
