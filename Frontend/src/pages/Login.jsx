@@ -19,7 +19,9 @@ const Login = () => {
   const loginUser = async (e) => {
     e.preventDefault();
     const res = await fetch(`${backendUrl}/api/v1/user/login`, {
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       method: "POST",
       body: JSON.stringify({ email, password }),
       credentials: "include",
@@ -36,29 +38,29 @@ const Login = () => {
   };
 
   return (
-    <section className="login">
+    <section className='login'>
       <Header />
       <form>
         <div>
           <input
-            type="email"
+            type='email'
             value={email}
-            id="email"
-            placeholder="E-Mail"
+            id='email'
+            placeholder='E-Mail'
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            type="password"
+            type='password'
             value={password}
-            id="password"
-            placeholder="Password"
+            id='password'
+            placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button onClick={loginUser}>Login</button>
       </form>
       <p>
-        Don't have an account yet? <Link to="/register">Create Account</Link>
+        Don't have an account yet? <Link to='/register'>Create Account</Link>
       </p>
     </section>
   );

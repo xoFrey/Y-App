@@ -14,26 +14,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 const app = express();
 
-// Explicitly handle CORS preflight requests
-app.options(
-  "*",
-  cors({
-    origin: "https://y-app-zq2w.vercel.app",
-    credentials: true,
-  }),
-);
-
-// Use CORS middleware (should be first)
-app.use(
-  cors({
-    origin: "https://y-app-zq2w.vercel.app",
-    credentials: true,
-  }),
-);
-
-// Trust proxy for cookies if deploying on Vercel
-app.set("trust proxy", 1);
-
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 const twoWeeksInMs = 14 * 24 * 60 * 60 * 1000;
 const isFrontendLocalhost =
   process.env.FRONTEND_URL.startsWith("http://localhost");

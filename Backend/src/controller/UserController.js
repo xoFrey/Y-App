@@ -35,6 +35,7 @@ const registerUserCtrl = async (req, res) => {
 const loginUserCtrl = async (req, res) => {
   try {
     const userInfo = req.body;
+    console.log("Hi");
     const result = await UserService.loginUser(userInfo);
     if (result.tokens.refreshToken) {
       req.session.refreshToken = result.tokens.refreshToken;
