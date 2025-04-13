@@ -1,8 +1,8 @@
 <h1 align="center"><samp>Y-App</samp> </h1>
 <p align="center"> 
-  <a href="https://github.com/xoFrey" target="_blank"> <img width="40" align="center" src="./Frontend/public/img/icons8-github-64.png"/></a>
-  <a href="https://silentmoon.superprojekte.de" target="_blank"> <img width="45" align="center" src="./Frontend/public/img/icons8-livepage-64.png"/></a>
-  <a href="https://www.linkedin.com/in/izelacar/" target="_blank"> <img width="40" align="center" src="./Frontend/public/img/icons8-linkedin-64.png"/></a>
+  <a href="https://github.com/xoFrey" target="_blank"> <img width="40" align="center" src="./Frontend/public/img/github.png"/></a>
+  <a href="https://silentmoon.superprojekte.de" target="_blank"> <img width="45" align="center" src="./Frontend/public/img/livepage.png"/></a>
+  <a href="https://www.linkedin.com/in/izelacar/" target="_blank"> <img width="40" align="center" src="./Frontend/public/img/linkedin.png"/></a>
 </p>
 
 <h3><samp>Contributors:</samp></h3>
